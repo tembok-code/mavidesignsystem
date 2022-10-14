@@ -17,8 +17,8 @@ class PrimaryColor {
   Color get shade900 => const Color(0xFF445b0c);
 }
 
-var lightColorScheme = ColorScheme.fromSeed(
-    seedColor: PrimaryColor().shade500,
+ColorScheme lightColorScheme({Color? color}) => ColorScheme.fromSeed(
+    seedColor: color ?? PrimaryColor().shade500,
     brightness: Brightness.light,
     primary: PrimaryColor().shade600,
     surface: PrimaryColor().shade50);
@@ -56,10 +56,10 @@ var lightColorScheme = ColorScheme.fromSeed(
 );
  */
 
-var darkColorScheme = ColorScheme.fromSeed(
-  seedColor: PrimaryColor().shade500,
-  brightness: Brightness.dark,
-);
+ColorScheme darkColorScheme({Color? color}) => ColorScheme.fromSeed(
+      seedColor: color ?? PrimaryColor().shade500,
+      brightness: Brightness.dark,
+    );
 /* 
 const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,

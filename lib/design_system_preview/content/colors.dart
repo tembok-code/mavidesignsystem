@@ -41,8 +41,8 @@ class ContentColors extends StatelessWidget {
                     flex: 2,
                     child: Column(
                       children: [
-                        _ColorThemeGrid(scheme: lightColorScheme),
-                        _ColorThemeGrid(scheme: darkColorScheme)
+                        _ColorThemeGrid(scheme: MaviColorTheme().lightScheme()),
+                        _ColorThemeGrid(scheme: MaviColorTheme().darkScheme())
                       ],
                     ),
                   ),

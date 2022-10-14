@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mavi_design_system/mavi_design_system.dart';
 
-import '../theme/text_theme.dart';
 //
-export 'color_schemes.dart';
+export 'color_theme.dart';
 export 'text_theme.dart';
 export 'sizes_theme.dart';
 //
 
 class MaviTheme {
-  get text => MaviTextTheme();
+  MaviTextTheme get textTheme => MaviTextTheme();
+  MaviColorTheme get colorTheme => MaviColorTheme();
 }
 
 ThemeData light() {
