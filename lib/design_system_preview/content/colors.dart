@@ -106,9 +106,9 @@ class _ColorThemeGrid extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              color: onPrimary,
               height: height * 0.5,
               decoration: BoxDecoration(
+                  color: onPrimary,
                   borderRadius: BorderRadius.circular(radius_content)),
             ),
           ),
