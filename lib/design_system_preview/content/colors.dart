@@ -110,11 +110,11 @@ class _ColorThemeGrid extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  child: MaviTheme()
-                      .textTheme
-                      .bodySmallBold(text: name)
-                      .copyWith(newColor: onPrimary),
-                ),
+                    child: Text(
+                  name,
+                  style: MaviTheme().textTheme.bodySmallBold().style,
+                  overflow: TextOverflow.ellipsis,
+                )),
                 Container(
                   height: spacing_sm,
                   decoration: BoxDecoration(
