@@ -15,7 +15,7 @@ class MaviColorScheme {
   Color get primaryColor => const Color(0xFF195bdb);
 
   MaterialColor get color => _colorWithShades();
-  MaterialColor get surfaceColor => color.shade900.generateMaterialColor();
+  MaterialColor get colorSecondary => light.secondary.generateMaterialColor();
 
   //* MAIN COLOR THEME
   ColorScheme get light => ColorScheme.fromSeed(
@@ -24,6 +24,8 @@ class MaviColorScheme {
         //
         //
         primary: primaryColor,
+        background: const Color(0xFFFEFCF4),
+        onBackground: const Color(0xFF1B1C17),
       );
   ColorScheme get dark => ColorScheme.fromSeed(
         seedColor: primaryColor,

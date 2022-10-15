@@ -20,7 +20,7 @@ extension MaviThemePaletteOptions on MaviPaletteOptions {
 
 extension MaviColorThemeExtension on MaviTheme {
   MaterialColor get colorSwatch => MaviColorScheme().color;
-  MaterialColor get colorSurfaceSwatch => MaviColorScheme().surfaceColor;
+  MaterialColor get colorSecondarySwatch => MaviColorScheme().colorSecondary;
 
   ColorScheme get light => MaviColorScheme().light;
   ColorScheme get dark => MaviColorScheme().dark;
