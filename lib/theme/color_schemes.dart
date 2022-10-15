@@ -37,20 +37,20 @@ class MaviColorScheme {
         brightness: Brightness.light,
         //
         //
-        primary: color.shade50,
-        onPrimary: color,
-        primaryContainer: color.shade200,
-        onPrimaryContainer: color.shade50,
+        primary: light.primaryContainer,
+        onPrimary: light.onPrimaryContainer,
+        primaryContainer: color.shade50,
+        onPrimaryContainer: Colors.transparent,
       );
   ColorScheme get darkSoft => ColorScheme.fromSeed(
         seedColor: primaryColor,
         brightness: Brightness.dark,
         //
         //
-        primary: color.shade900,
-        onPrimary: color.shade100,
-        primaryContainer: color.shade700,
-        onPrimaryContainer: color.shade800,
+        primary: light.onPrimaryContainer,
+        onPrimary: light.primaryContainer,
+        primaryContainer: color.shade900,
+        onPrimaryContainer: Colors.transparent,
       );
 
   //* OUTLINED COLOR THEME
