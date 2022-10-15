@@ -24,8 +24,8 @@ class MaviColorScheme {
         //
         //
         primary: primaryColor,
-        background: const Color(0xFFFEFCF4),
-        onBackground: const Color(0xFF1B1C17),
+        background: const Color(0xFFfefbff),
+        onBackground: const Color(0xFF1b1b1f),
       );
   ColorScheme get dark => ColorScheme.fromSeed(
         seedColor: primaryColor,
