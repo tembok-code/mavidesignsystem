@@ -1,27 +1,90 @@
 import 'package:flutter/material.dart';
 
-//*REDDEL COLOR
-class PrimaryColor {
-  get name => "Rio Grande";
-  get color => shade500;
-  //
-  Color get shade50 => const Color(0xFFfdffe4);
-  Color get shade100 => const Color(0xFFf8ffc5);
-  Color get shade200 => const Color(0xFFeeff92);
-  Color get shade300 => const Color(0xFFe0ff53);
-  Color get shade400 => const Color(0xFFcdfb20);
-  Color get shade500 => const Color(0xFFa6d700);
-  Color get shade600 => const Color(0xFF86b500);
-  Color get shade700 => const Color(0xFF668902);
-  Color get shade800 => const Color(0xFF516C08);
-  Color get shade900 => const Color(0xFF445b0c);
+/// This class ensures that app color scheme is compatible with
+/// Material [ColorScheme] pallet so build in components looks good with
+/// our custom implementation.
+/// Thanks to https://fivedottwelve.com/blog/themes-in-flutter-and-how-to-use-material-you-dynamic-colors/
+/// for the class
+
+//* MAVI COLOR
+class MaviColorScheme {
+  @required
+  String get name => 'mavi';
+  @required
+  Color get primaryColor => Colors.blue;
+
+  MaterialColor get color => _createMaterialColor();
+
+  ColorScheme get light => ColorScheme.fromSeed(
+        seedColor: primaryColor,
+        brightness: Brightness.light,
+        //
+        //
+      );
+  ColorScheme get dark => ColorScheme.fromSeed(
+        seedColor: primaryColor,
+        brightness: Brightness.dark,
+        //
+        //
+      );
+
+  MaterialColor _createMaterialColor() {
+    List strengths = <double>[.05];
+    Map<int, Color> swatch = {};
+    final int r = color.red, g = color.green, b = color.blue;
+
+    for (int i = 1; i < 10; i++) {
+      strengths.add(0.1 * i);
+    }
+    for (var strength in strengths) {
+      final double ds = 0.5 - strength;
+      swatch[(strength * 1000).round()] = Color.fromRGBO(
+        r + ((ds < 0 ? r : (255 - r)) * ds).round(),
+        g + ((ds < 0 ? g : (255 - g)) * ds).round(),
+        b + ((ds < 0 ? b : (255 - b)) * ds).round(),
+        1,
+      );
+    }
+    return MaterialColor(color.value, swatch);
+  }
 }
 
-ColorScheme lightColorScheme({Color? color}) => ColorScheme.fromSeed(
-    seedColor: color ?? PrimaryColor().shade500,
-    brightness: Brightness.light,
-    primary: PrimaryColor().shade600,
-    surface: PrimaryColor().shade50);
+//*REDDEL COLOR
+class ReddelColorScheme extends MaviColorScheme {
+  @override
+  String get name => "Rio Grande";
+  @override
+  Color get primaryColor => const Color(0xFFa6d700);
+
+  @override
+  ColorScheme get light => ColorScheme.fromSeed(
+        seedColor: primaryColor,
+        brightness: Brightness.light,
+        //
+        primary: color.shade600,
+        surface: color.shade50,
+      );
+  @override
+  ColorScheme get dark => ColorScheme.fromSeed(
+        seedColor: primaryColor,
+        brightness: Brightness.dark,
+        //
+      );
+
+/*   @override
+  Map<int, Color> primaryShade = {
+    50: const Color(0xFFfdffe4),
+    100: const Color(0xFFf8ffc5),
+    200: const Color(0xFFeeff92),
+    300: const Color(0xFFe0ff53),
+    400: const Color(0xFFcdfb20),
+    500: const Color(0xFFa6d700),
+    600: const Color(0xFF86b500),
+    700: const Color(0xFF668902),
+    800: const Color(0xFF516C08),
+    900: const Color(0xFF445b0c),
+  }; */
+}
 
 /* const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
@@ -56,10 +119,7 @@ ColorScheme lightColorScheme({Color? color}) => ColorScheme.fromSeed(
 );
  */
 
-ColorScheme darkColorScheme({Color? color}) => ColorScheme.fromSeed(
-      seedColor: color ?? PrimaryColor().shade500,
-      brightness: Brightness.dark,
-    );
+
 /* 
 const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,

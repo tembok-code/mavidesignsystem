@@ -90,38 +90,37 @@ class _MButtonState extends State<MButton> {
     var isDark = colorScheme.brightness == Brightness.dark;
     //
     Color _bgColor = colorPrimary;
-    Color _bgHoverColor = MaviTheme().colorTheme.primaryShades.shade700;
+    Color _bgHoverColor = MaviTheme().colorSwatch.shade700;
     Color _labelColor = colorScheme.onPrimary;
-    Color _splashColor = MaviTheme().colorTheme.primaryShades.shade800;
+    Color _splashColor = MaviTheme().colorSwatch.shade800;
     Color? _borderColor = null;
     //
     switch (_variant) {
       case ButtonVariant.soft:
         _bgColor = isDark
-            ? MaviTheme().colorTheme.primaryShades.shade800
-            : MaviTheme().colorTheme.primaryShades.shade200;
-        _bgHoverColor = MaviTheme().colorTheme.primaryShades.shade200;
-        _labelColor = isDark
-            ? MaviTheme().colorTheme.primaryShades.shade200
-            : colorScheme.primary;
-        _splashColor = MaviTheme().colorTheme.primaryShades.shade300;
+            ? MaviTheme().colorSwatch.shade800
+            : MaviTheme().colorSwatch.shade200;
+        _bgHoverColor = MaviTheme().colorSwatch.shade200;
+        _labelColor =
+            isDark ? MaviTheme().colorSwatch.shade200 : colorScheme.primary;
+        _splashColor = MaviTheme().colorSwatch.shade300;
         break;
       case ButtonVariant.outlined:
         _bgColor = colorScheme.background;
         _bgHoverColor = isDark
-            ? MaviTheme().colorTheme.primaryShades.shade700
-            : MaviTheme().colorTheme.primaryShades.shade200;
+            ? MaviTheme().colorSwatch.shade700
+            : MaviTheme().colorSwatch.shade200;
         _labelColor = colorScheme.primary;
-        _splashColor = MaviTheme().colorTheme.primaryShades.shade300;
+        _splashColor = MaviTheme().colorSwatch.shade300;
         _borderColor = colorScheme.primary;
         break;
       case ButtonVariant.plain:
         _bgColor = colorScheme.background;
         _bgHoverColor = isDark
-            ? MaviTheme().colorTheme.primaryShades.shade700
-            : MaviTheme().colorTheme.primaryShades.shade200;
+            ? MaviTheme().colorSwatch.shade700
+            : MaviTheme().colorSwatch.shade200;
         _labelColor = colorScheme.primary;
-        _splashColor = MaviTheme().colorTheme.primaryShades.shade300;
+        _splashColor = MaviTheme().colorSwatch.shade300;
         break;
       default:
     }

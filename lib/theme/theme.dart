@@ -9,13 +9,25 @@ export 'sizes_theme.dart';
 
 class MaviTheme {
   MaviTextTheme get textTheme => MaviTextTheme();
-  MaviColorTheme get colorTheme => MaviColorTheme();
-}
 
-ThemeData light() {
-  return ThemeData.light().copyWith();
-}
+  get themeData => data();
 
-ThemeData dark() {
-  return ThemeData.dark().copyWith();
+  ThemeData data(
+      {MaviPaletteOptions palette = MaviPaletteOptions.mavi,
+      Brightness? brightness}) {
+    var _scheme = palette.colorScheme.light;
+    switch (brightness) {
+      case Brightness.dark:
+        _scheme = palette.colorScheme.dark;
+        break;
+      default:
+        break;
+    }
+    return ThemeData(
+        useMaterial3: true,
+        colorScheme: brightness == Brightness.light
+            ? palette.colorScheme.light
+            : palette.colorScheme.dark,
+        primarySwatch: palette.colorScheme.color);
+  }
 }
