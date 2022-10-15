@@ -31,7 +31,22 @@ class MaviColorScheme {
         primary: color.shade300,
       );
 
-  //TODO: SOLID COLOR THEME
+  //* SOLID COLOR THEME
+  ColorScheme get lightSolid => ColorScheme.fromSeed(
+        seedColor: primaryColor,
+        brightness: Brightness.light,
+        //
+        //
+        primary: primaryColor, onPrimaryContainer: Colors.transparent,
+      );
+  ColorScheme get darkSolid => ColorScheme.fromSeed(
+        seedColor: primaryColor,
+        brightness: Brightness.dark,
+        //
+        //
+        primary: color.shade300,
+        onPrimaryContainer: Colors.transparent,
+      );
 
   //* SOFT COLOR THEME
   ColorScheme get lightSoft => ColorScheme.fromSeed(
@@ -64,7 +79,7 @@ class MaviColorScheme {
         primary: light.background,
         onPrimary: primaryColor,
         primaryContainer: color.shade100,
-        onPrimaryContainer: primaryColor,
+        onPrimaryContainer: color.shade100,
       );
   ColorScheme get darkOutlined => ColorScheme.fromSeed(
         seedColor: primaryColor,

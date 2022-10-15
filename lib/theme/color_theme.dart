@@ -25,9 +25,9 @@ extension MaviColorThemeExtension on MaviTheme {
   ColorScheme get solid {
     switch (ThemeMode.system) {
       case ThemeMode.dark:
-        return dark;
+        return MaviColorScheme().darkSolid;
       default:
-        return light;
+        return MaviColorScheme().lightSolid;
     }
   }
 

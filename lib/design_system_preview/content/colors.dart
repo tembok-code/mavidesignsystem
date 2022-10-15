@@ -41,7 +41,10 @@ class ContentColors extends StatelessWidget {
                     flex: 2,
                     child: Column(
                       children: [
+                        MaviTheme().textTheme.h4(text: 'Light'),
                         _ColorThemeGrid(scheme: MaviTheme().light),
+                        maviThemeSpacer(size: spacing_lg),
+                        MaviTheme().textTheme.h4(text: 'Dark'),
                         _ColorThemeGrid(scheme: MaviTheme().dark)
                       ],
                     ),
@@ -52,6 +55,9 @@ class ContentColors extends StatelessWidget {
           ),
         ]),
         SectionWidget(title: "$title - Swatches", slivers: [
+          SliverToBoxAdapter(
+            child: MaviTheme().textTheme.h4(text: 'Primary'),
+          ),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: margin_lg),
@@ -174,29 +180,33 @@ class _ColorSwatchRow extends StatelessWidget {
     Widget swatchItem(int shade, Color color) => Expanded(
           child: Container(
             width: double.infinity,
-            height: button_height_lg,
+            height: button_height_lg * 2,
             color: color,
-            child: Center(
-                child: Text(
-              '$shade\n${color.toString().replaceAll('Color(0xff', "").replaceAll(")", "")}',
-              textAlign: TextAlign.center,
-            )),
+            child: Align(
+                alignment: Alignment.bottomCenter,
+                child: MaviTheme().textTheme.body(
+                      text:
+                          '$shade\n${color.toString().replaceAll('Color(0xff', "").replaceAll(")", "")}',
+                    )),
           ),
         );
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        swatchItem(50, color.shade50),
-        swatchItem(100, color.shade100),
-        swatchItem(200, color.shade200),
-        swatchItem(300, color.shade300),
-        swatchItem(400, color.shade400),
-        swatchItem(500, color.shade500),
-        swatchItem(600, color.shade600),
-        swatchItem(700, color.shade700),
-        swatchItem(800, color.shade800),
-        swatchItem(900, color.shade900),
-      ],
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(radius_container),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          swatchItem(50, color.shade50),
+          swatchItem(100, color.shade100),
+          swatchItem(200, color.shade200),
+          swatchItem(300, color.shade300),
+          swatchItem(400, color.shade400),
+          swatchItem(500, color.shade500),
+          swatchItem(600, color.shade600),
+          swatchItem(700, color.shade700),
+          swatchItem(800, color.shade800),
+          swatchItem(900, color.shade900),
+        ],
+      ),
     );
   }
 }
