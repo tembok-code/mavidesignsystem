@@ -27,7 +27,7 @@ class MaviColorScheme {
         brightness: Brightness.dark,
         //
         //
-        primary: color.shade400,
+        primary: color.shade300,
       );
 
   MaterialColor _createMaterialColor() {

@@ -176,7 +176,11 @@ class _ColorSwatchRow extends StatelessWidget {
             width: double.infinity,
             height: button_height_lg,
             color: color,
-            child: Center(child: Text('$shade\n$color')),
+            child: Center(
+                child: Text(
+              '$shade\n${color.toString().replaceAll('Color{0xff', "").replaceAll(")", "")}',
+              textAlign: TextAlign.center,
+            )),
           ),
         );
     return Row(
