@@ -178,7 +178,7 @@ class _ColorSwatchRow extends StatelessWidget {
             color: color,
             child: Center(
                 child: Text(
-              '$shade\n${color.toString().replaceAll('Color{0xff', "").replaceAll(")", "")}',
+              '$shade\n${color.toString().replaceAll('Color(0xff', "").replaceAll(")", "")}',
               textAlign: TextAlign.center,
             )),
           ),

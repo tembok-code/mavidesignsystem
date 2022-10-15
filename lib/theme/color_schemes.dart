@@ -15,6 +15,7 @@ class MaviColorScheme {
 
   MaterialColor get color => _createMaterialColor();
 
+//* SOLID COLOR THEME
   ColorScheme get light => ColorScheme.fromSeed(
         seedColor: primaryColor,
         brightness: Brightness.light,
@@ -28,6 +29,70 @@ class MaviColorScheme {
         //
         //
         primary: color.shade300,
+      );
+
+  //* SOFT COLOR THEME
+  ColorScheme get lightSoft => ColorScheme.fromSeed(
+        seedColor: primaryColor,
+        brightness: Brightness.light,
+        //
+        //
+        primary: color.shade200,
+        onPrimary: color,
+        primaryContainer: color.shade200,
+      );
+  ColorScheme get darkSoft => ColorScheme.fromSeed(
+        seedColor: primaryColor,
+        brightness: Brightness.light,
+        //
+        //
+        primary: color.shade800,
+        onPrimary: color.shade200,
+        primaryContainer: color.shade200,
+      );
+
+  //* OUTLINED COLOR THEME
+  ColorScheme get lightOutlined => ColorScheme.fromSeed(
+        seedColor: primaryColor,
+        brightness: Brightness.light,
+        //
+        //
+        primary: light.background,
+        onPrimary: primaryColor,
+        primaryContainer: color.shade200,
+        onPrimaryContainer: primaryColor,
+      );
+  ColorScheme get darkOutlined => ColorScheme.fromSeed(
+        seedColor: primaryColor,
+        brightness: Brightness.light,
+        //
+        //
+        primary: dark.background,
+        onPrimary: color.shade200,
+        primaryContainer: color.shade700,
+        onPrimaryContainer: color.shade200,
+      );
+
+  //* PLAIN COLOR THEME
+  ColorScheme get lightPlain => ColorScheme.fromSeed(
+        seedColor: primaryColor,
+        brightness: Brightness.light,
+        //
+        //
+        primary: light.background,
+        onPrimary: primaryColor,
+        primaryContainer: color.shade200,
+        onPrimaryContainer: light.background,
+      );
+  ColorScheme get darkPlain => ColorScheme.fromSeed(
+        seedColor: primaryColor,
+        brightness: Brightness.light,
+        //
+        //
+        primary: dark.background,
+        onPrimary: primaryColor,
+        primaryContainer: color.shade700,
+        onPrimaryContainer: dark.background,
       );
 
   MaterialColor _createMaterialColor() {
