@@ -95,7 +95,7 @@ class _ColorThemeGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double height_lg = spacing_lg * 4;
-    const double height_sm = spacing_lg;
+    const double height_sm = spacing_lg * 2;
 
     Widget _colorContainer(Color primary, Color onPrimary, String name,
             {double height = height_sm}) =>
@@ -109,7 +109,10 @@ class _ColorThemeGrid extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MaviTheme().textTheme.bodySmallBold(text: name),
+                MaviTheme()
+                    .textTheme
+                    .bodySmallBold(text: name)
+                    .copyWith(newColor: onPrimary),
                 Container(
                   height: spacing_sm,
                   decoration: BoxDecoration(
