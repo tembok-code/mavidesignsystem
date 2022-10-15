@@ -31,7 +31,9 @@ class MaviColorScheme {
   MaterialColor _createMaterialColor() {
     List strengths = <double>[.05];
     Map<int, Color> swatch = {};
-    final int r = color.red, g = color.green, b = color.blue;
+    final int r = primaryColor.red,
+        g = primaryColor.green,
+        b = primaryColor.blue;
 
     for (int i = 1; i < 10; i++) {
       strengths.add(0.1 * i);
@@ -45,7 +47,7 @@ class MaviColorScheme {
         1,
       );
     }
-    return MaterialColor(color.value, swatch);
+    return MaterialColor(primaryColor.value, swatch);
   }
 }
 
