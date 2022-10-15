@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './color_theme.dart';
 
 /// This class ensures that app color scheme is compatible with
 /// Material [ColorScheme] pallet so build in components looks good with
@@ -14,6 +15,7 @@ class MaviColorScheme {
   Color get primaryColor => const Color(0xFF195bdb);
 
   MaterialColor get color => _colorWithShades();
+  MaterialColor get surfaceColor => color.shade900.generateMaterialColor();
 
   //* MAIN COLOR THEME
   ColorScheme get light => ColorScheme.fromSeed(
@@ -79,7 +81,7 @@ class MaviColorScheme {
         primary: light.background,
         onPrimary: primaryColor,
         primaryContainer: color.shade100,
-        onPrimaryContainer: color.shade100,
+        onPrimaryContainer: color.shade200,
       );
   ColorScheme get darkOutlined => ColorScheme.fromSeed(
         seedColor: primaryColor,

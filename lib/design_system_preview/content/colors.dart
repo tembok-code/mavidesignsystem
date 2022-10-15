@@ -82,6 +82,18 @@ class ContentColors extends StatelessWidget {
               child: _ColorSwatchRow(color: MaviTheme().colorSwatch),
             ),
           ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: margin_lg),
+              child: MaviTheme().textTheme.h4(text: 'Surface'),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: margin_lg),
+              child: _ColorSwatchRow(color: MaviTheme().colorSurfaceSwatch),
+            ),
+          ),
         ]),
       ],
     );
