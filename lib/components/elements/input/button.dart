@@ -85,52 +85,35 @@ class _MButtonState extends State<MButton> {
     }
     updateWidth();
     //
-    var colorScheme = Theme.of(context).colorScheme;
-    Color colorPrimary = colorScheme.primary;
-    var isDark = colorScheme.brightness == Brightness.dark;
-    //
-    Color _bgColor = colorPrimary;
-    Color _bgHoverColor = MaviTheme().colorSwatch.shade700;
-    Color _labelColor = colorScheme.onPrimary;
-    Color _splashColor = MaviTheme().colorSwatch.shade800;
-    Color? _borderColor = null;
-    //
+    var colorScheme = MaviTheme().solid;
+
     switch (_variant) {
       case ButtonVariant.soft:
-        _bgColor = isDark
-            ? MaviTheme().colorSwatch.shade800
-            : MaviTheme().colorSwatch.shade200;
-        _bgHoverColor = MaviTheme().colorSwatch.shade200;
-        _labelColor =
-            isDark ? MaviTheme().colorSwatch.shade200 : colorScheme.primary;
-        _splashColor = MaviTheme().colorSwatch.shade300;
+        colorScheme = MaviTheme().soft;
         break;
       case ButtonVariant.outlined:
-        _bgColor = colorScheme.background;
-        _bgHoverColor = isDark
-            ? MaviTheme().colorSwatch.shade700
-            : MaviTheme().colorSwatch.shade200;
-        _labelColor = colorScheme.primary;
-        _splashColor = MaviTheme().colorSwatch.shade300;
-        _borderColor = colorScheme.primary;
+        colorScheme = MaviTheme().outlined;
         break;
       case ButtonVariant.plain:
-        _bgColor = colorScheme.background;
-        _bgHoverColor = isDark
-            ? MaviTheme().colorSwatch.shade700
-            : MaviTheme().colorSwatch.shade200;
-        _labelColor = colorScheme.primary;
-        _splashColor = MaviTheme().colorSwatch.shade300;
+        colorScheme = MaviTheme().plain;
         break;
       default:
+        colorScheme = MaviTheme().solid;
     }
+    //
+    Color _bgColor = colorScheme.primary;
+    Color _labelColor = colorScheme.onPrimary;
+    Color _bgHoverColor = colorScheme.primaryContainer;
+    Color _splashColor = MaviTheme().colorSwatch.shade800;
+    Color _borderColor = colorScheme.onPrimaryContainer;
+    //
     //
     //
     switch (_disabled) {
       case true:
         _bgColor = widget.loading ? _bgColor : _bgColor.withAlpha(100);
         _labelColor = widget.loading ? _labelColor : _labelColor.withAlpha(100);
-        _borderColor = _borderColor?.withAlpha(100);
+        _borderColor = _borderColor.withAlpha(100);
         break;
       default:
         break;
@@ -141,7 +124,8 @@ class _MButtonState extends State<MButton> {
       mainAxisSize: MainAxisSize.min,
       children: [
         AnimatedContainer(
-          duration: Duration(milliseconds: 250),
+          duration:
+              const Duration(milliseconds: 250), //TODO: Create Theme Duration
           constraints: BoxConstraints(
             maxWidth: _maxWidth,
             minWidth: _minWidth,
@@ -150,9 +134,7 @@ class _MButtonState extends State<MButton> {
           decoration: BoxDecoration(
               color: isHovered ? _bgHoverColor : _bgColor,
               borderRadius: BorderRadius.circular(radius_button),
-              border: _borderColor == null
-                  ? null
-                  : Border.all(color: _borderColor)),
+              border: Border.all(color: _borderColor)),
           child: Material(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(radius_button),
