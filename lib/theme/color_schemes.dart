@@ -11,7 +11,7 @@ class MaviColorScheme {
   @required
   String get name => 'mavi';
   @required
-  Color get primaryColor => Colors.blue;
+  Color get primaryColor => const Color(0xFF195bdb);
 
   MaterialColor get color => _createMaterialColor();
 

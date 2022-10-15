@@ -51,6 +51,14 @@ class ContentColors extends StatelessWidget {
             ),
           ),
         ]),
+        SectionWidget(title: "$title - Swatches", slivers: [
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: margin_lg),
+              child: _ColorSwatchRow(color: MaviTheme().colorSwatch),
+            ),
+          ),
+        ]),
       ],
     );
   }
@@ -154,6 +162,26 @@ class _ColorThemeGrid extends StatelessWidget {
                 ))
             .toList(),
       ),
+    );
+  }
+}
+
+class _ColorSwatchRow extends StatelessWidget {
+  const _ColorSwatchRow({super.key, required this.color});
+  final MaterialColor color;
+  @override
+  Widget build(BuildContext context) {
+    Widget swatchItem(int shade, Color color) => Container(
+          color: color,
+          child: Text('$shade'),
+        );
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        swatchItem(50, color.shade50),
+        swatchItem(100, color.shade100),
+      ],
     );
   }
 }
