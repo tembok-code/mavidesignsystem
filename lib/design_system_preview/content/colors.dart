@@ -95,9 +95,9 @@ class _ColorThemeGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double height_lg = spacing_lg * 4;
-    const double height_sm = spacing_lg * 2;
+    const double height_sm = spacing_lg;
 
-    Widget _colorContainer(Color primary, Color onPrimary,
+    Widget _colorContainer(Color primary, Color onPrimary, String name,
             {double height = height_sm}) =>
         Container(
           color: primary,
@@ -105,11 +105,18 @@ class _ColorThemeGrid extends StatelessWidget {
           padding: const EdgeInsets.all(spacing_sm),
           child: Align(
             alignment: Alignment.bottomCenter,
-            child: Container(
-              height: height * 0.5,
-              decoration: BoxDecoration(
-                  color: onPrimary,
-                  borderRadius: BorderRadius.circular(radius_content)),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MaviTheme().textTheme.bodySmallBold(text: name),
+                Container(
+                  height: spacing_sm,
+                  decoration: BoxDecoration(
+                      color: onPrimary,
+                      borderRadius: BorderRadius.circular(radius_content)),
+                ),
+              ],
             ),
           ),
         );
@@ -121,13 +128,14 @@ class _ColorThemeGrid extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              [scheme.primary, scheme.onPrimary],
-              [scheme.primaryContainer, scheme.onPrimaryContainer]
+              [scheme.primary, scheme.onPrimary, "Primary"],
+              [scheme.primaryContainer, scheme.onPrimaryContainer, "Container"],
             ]
-                .map((e) => Expanded(
+                .map((dynamic e) => Expanded(
                         child: _colorContainer(
                       e[0],
                       e[1],
+                      e[2],
                       height: height_lg,
                     )))
                 .toList(),
@@ -135,37 +143,64 @@ class _ColorThemeGrid extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              [scheme.secondary, scheme.onSecondary],
-              [scheme.secondaryContainer, scheme.onSecondaryContainer]
-            ].map((e) => Expanded(child: _colorContainer(e[0], e[1]))).toList(),
+              [scheme.secondary, scheme.onSecondary, "Secondary"],
+              [
+                scheme.secondaryContainer,
+                scheme.onSecondaryContainer,
+                "Container"
+              ]
+            ]
+                .map((dynamic e) =>
+                    Expanded(child: _colorContainer(e[0], e[1], e[2])))
+                .toList(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              [scheme.tertiary, scheme.onTertiary],
-              [scheme.tertiaryContainer, scheme.onTertiaryContainer]
-            ].map((e) => Expanded(child: _colorContainer(e[0], e[1]))).toList(),
+              [scheme.tertiary, scheme.onTertiary, "Tertiary"],
+              [
+                scheme.tertiaryContainer,
+                scheme.onTertiaryContainer,
+                "Container"
+              ]
+            ]
+                .map((dynamic e) =>
+                    Expanded(child: _colorContainer(e[0], e[1], e[2])))
+                .toList(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              [scheme.error, scheme.onError],
-              [scheme.errorContainer, scheme.onErrorContainer]
-            ].map((e) => Expanded(child: _colorContainer(e[0], e[1]))).toList(),
+              [scheme.error, scheme.onError, "Error"],
+              [scheme.errorContainer, scheme.onErrorContainer, "Container"]
+            ]
+                .map((dynamic e) =>
+                    Expanded(child: _colorContainer(e[0], e[1], e[2])))
+                .toList(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              [scheme.background, scheme.onBackground],
-              [scheme.surface, scheme.onSurface]
-            ].map((e) => Expanded(child: _colorContainer(e[0], e[1]))).toList(),
+              [scheme.background, scheme.onBackground, "Background"],
+              [scheme.surface, scheme.onSurface, "Surface"]
+            ]
+                .map((dynamic e) =>
+                    Expanded(child: _colorContainer(e[0], e[1], e[2])))
+                .toList(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              [scheme.outline, scheme.outline],
-              [scheme.surfaceVariant, scheme.onSurfaceVariant]
-            ].map((e) => Expanded(child: _colorContainer(e[0], e[1]))).toList(),
+              [scheme.outline, scheme.outline, "Outline"],
+              [
+                scheme.surfaceVariant,
+                scheme.onSurfaceVariant,
+                "Surface Variant"
+              ]
+            ]
+                .map((dynamic e) =>
+                    Expanded(child: _colorContainer(e[0], e[1], e[2])))
+                .toList(),
           ),
         ],
       ),
