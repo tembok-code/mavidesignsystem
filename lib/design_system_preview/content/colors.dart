@@ -94,8 +94,8 @@ class _ColorThemeGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double height_lg = spacing_lg * 2;
-    const double height_sm = spacing_lg;
+    const double height_lg = spacing_lg * 4;
+    const double height_sm = spacing_lg * 2;
 
     Widget _colorContainer(Color primary, Color onPrimary,
             {double height = height_sm}) =>
@@ -167,12 +167,7 @@ class _ColorThemeGrid extends StatelessWidget {
               [scheme.surfaceVariant, scheme.onSurfaceVariant]
             ].map((e) => Expanded(child: _colorContainer(e[0], e[1]))).toList(),
           ),
-        ]
-            .map((e) => Padding(
-                  padding: const EdgeInsets.only(bottom: spacing_sm),
-                  child: e,
-                ))
-            .toList(),
+        ],
       ),
     );
   }
@@ -191,10 +186,16 @@ class _ColorSwatchRow extends StatelessWidget {
             padding: const EdgeInsets.all(spacing_sm),
             child: Align(
                 alignment: Alignment.bottomLeft,
-                child: MaviTheme().textTheme.body(
-                      text:
-                          '$shade\n${color.toString().replaceAll('Color(0xff', "").replaceAll(")", "")}',
-                    )),
+                child: Column(
+                  children: [
+                    MaviTheme().textTheme.bodyBold(text: '$shade'),
+                    MaviTheme().textTheme.bodySmall(
+                        text: color
+                            .toString()
+                            .replaceAll('Color(0xff', "#")
+                            .replaceAll(")", ""))
+                  ],
+                )),
           ),
         );
     return ClipRRect(
