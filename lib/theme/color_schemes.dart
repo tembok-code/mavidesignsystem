@@ -16,6 +16,8 @@ class MaviColorScheme {
 
   MaterialColor get color => _colorWithShades();
   MaterialColor get colorSecondary => light.secondary.generateMaterialColor();
+  MaterialColor get colorNeutral =>
+      light.surfaceVariant.generateMaterialColor();
 
   //* MAIN COLOR THEME
   ColorScheme get light => ColorScheme.fromSeed(
