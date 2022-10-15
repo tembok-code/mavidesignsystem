@@ -171,14 +171,15 @@ class _ColorSwatchRow extends StatelessWidget {
   final MaterialColor color;
   @override
   Widget build(BuildContext context) {
-    Widget swatchItem(int shade, Color color) => Container(
-          width: double.infinity,
-          height: button_height_lg,
-          color: color,
-          child: Text('$shade'),
+    Widget swatchItem(int shade, Color color) => Expanded(
+          child: Container(
+            width: double.infinity,
+            height: button_height_lg,
+            color: color,
+            child: Text('$shade'),
+          ),
         );
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         swatchItem(50, color.shade50),
