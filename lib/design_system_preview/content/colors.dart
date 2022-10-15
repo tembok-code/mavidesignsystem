@@ -112,7 +112,7 @@ class _ColorThemeGrid extends StatelessWidget {
                 Container(
                     child: Text(
                   name,
-                  style: MaviTheme().textTheme.bodySmallBold().style,
+                  style: MaviTheme().textTheme.bodySmallBold().getStyle,
                   overflow: TextOverflow.ellipsis,
                 )),
                 Container(
@@ -196,7 +196,7 @@ class _ColorThemeGrid extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              [scheme.outline, scheme.outline, "Outline"],
+              [scheme.outline, scheme.surfaceVariant, "Outline"],
               [
                 scheme.surfaceVariant,
                 scheme.onSurfaceVariant,
