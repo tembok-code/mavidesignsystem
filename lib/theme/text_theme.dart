@@ -70,7 +70,8 @@ class MaviThemeTextWidget extends Text {
       this.upperCase = false,
       this.color,
       this.align = TextAlign.left,
-      this.sizeFactor = 1})
+      this.sizeFactor = 1,
+      this.overflow})
       : super('');
   final String? text;
   final TextStyle style;
@@ -78,6 +79,7 @@ class MaviThemeTextWidget extends Text {
   final Color? color;
   final double sizeFactor;
   final TextAlign align;
+  final TextOverflow? overflow;
 
   get getStyle => style.copyWith(
       color: color ?? style.color,
