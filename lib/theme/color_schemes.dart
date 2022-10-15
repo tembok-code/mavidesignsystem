@@ -20,12 +20,14 @@ class MaviColorScheme {
         brightness: Brightness.light,
         //
         //
+        primary: primaryColor,
       );
   ColorScheme get dark => ColorScheme.fromSeed(
         seedColor: primaryColor,
         brightness: Brightness.dark,
         //
         //
+        primary: color.shade400,
       );
 
   MaterialColor _createMaterialColor() {

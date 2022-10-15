@@ -176,7 +176,7 @@ class _ColorSwatchRow extends StatelessWidget {
             width: double.infinity,
             height: button_height_lg,
             color: color,
-            child: Text('$shade'),
+            child: Center(child: Text('$shade\n$color')),
           ),
         );
     return Row(
