@@ -37,18 +37,20 @@ class MaviColorScheme {
         brightness: Brightness.light,
         //
         //
-        primary: color.shade200,
+        primary: color.shade50,
         onPrimary: color,
         primaryContainer: color.shade200,
+        onPrimaryContainer: color.shade50,
       );
   ColorScheme get darkSoft => ColorScheme.fromSeed(
         seedColor: primaryColor,
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         //
         //
-        primary: color.shade800,
-        onPrimary: color.shade200,
-        primaryContainer: color.shade200,
+        primary: color.shade900,
+        onPrimary: color.shade100,
+        primaryContainer: color.shade700,
+        onPrimaryContainer: color.shade800,
       );
 
   //* OUTLINED COLOR THEME
@@ -64,7 +66,7 @@ class MaviColorScheme {
       );
   ColorScheme get darkOutlined => ColorScheme.fromSeed(
         seedColor: primaryColor,
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         //
         //
         primary: dark.background,
@@ -86,7 +88,7 @@ class MaviColorScheme {
       );
   ColorScheme get darkPlain => ColorScheme.fromSeed(
         seedColor: primaryColor,
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         //
         //
         primary: dark.background,
