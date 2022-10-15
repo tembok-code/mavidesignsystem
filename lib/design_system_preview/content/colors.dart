@@ -109,10 +109,12 @@ class _ColorThemeGrid extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MaviTheme()
-                    .textTheme
-                    .bodySmallBold(text: name)
-                    .copyWith(newColor: onPrimary),
+                Container(
+                  child: MaviTheme()
+                      .textTheme
+                      .bodySmallBold(text: name)
+                      .copyWith(newColor: onPrimary),
+                ),
                 Container(
                   height: spacing_sm,
                   decoration: BoxDecoration(

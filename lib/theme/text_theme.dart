@@ -90,6 +90,8 @@ class MaviThemeTextWidget extends Text {
 
     return Text(
       _text,
+      overflow: TextOverflow.ellipsis,
+      softWrap: true,
       textAlign: align,
       style: getStyle,
     );
