@@ -172,6 +172,8 @@ class _ColorSwatchRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget swatchItem(int shade, Color color) => Container(
+          width: double.infinity,
+          height: button_height_lg,
           color: color,
           child: Text('$shade'),
         );
@@ -181,6 +183,14 @@ class _ColorSwatchRow extends StatelessWidget {
       children: [
         swatchItem(50, color.shade50),
         swatchItem(100, color.shade100),
+        swatchItem(200, color.shade200),
+        swatchItem(300, color.shade300),
+        swatchItem(400, color.shade400),
+        swatchItem(500, color.shade500),
+        swatchItem(600, color.shade600),
+        swatchItem(700, color.shade700),
+        swatchItem(800, color.shade800),
+        swatchItem(900, color.shade900),
       ],
     );
   }
