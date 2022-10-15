@@ -9,13 +9,13 @@ import 'package:flutter/material.dart';
 //* MAVI COLOR
 class MaviColorScheme {
   @required
-  String get name => 'mavi';
+  String get name => 'Denim';
   @required
   Color get primaryColor => const Color(0xFF195bdb);
 
-  MaterialColor get color => _createMaterialColor();
+  MaterialColor get color => _colorWithShades();
 
-//* SOLID COLOR THEME
+  //* MAIN COLOR THEME
   ColorScheme get light => ColorScheme.fromSeed(
         seedColor: primaryColor,
         brightness: Brightness.light,
@@ -30,6 +30,8 @@ class MaviColorScheme {
         //
         primary: color.shade300,
       );
+
+  //TODO: SOLID COLOR THEME
 
   //* SOFT COLOR THEME
   ColorScheme get lightSoft => ColorScheme.fromSeed(
@@ -96,6 +98,19 @@ class MaviColorScheme {
         primaryContainer: color.shade700,
         onPrimaryContainer: dark.background,
       );
+
+  MaterialColor _colorWithShades() => MaterialColor(primaryColor.value, const {
+        50: Color(0xffEFF7FF),
+        100: Color(0xffDAEDFF),
+        200: Color(0xffBEE0FF),
+        300: Color(0xff91CEFF),
+        400: Color(0xff5DB2FD),
+        500: Color(0xff3790FA),
+        600: Color(0xff2171EF),
+        700: Color(0xff195BDB),
+        800: Color(0xff1B4AB2),
+        900: Color(0xff1C428C),
+      });
 
   MaterialColor _createMaterialColor() {
     List strengths = <double>[.05];
