@@ -134,7 +134,7 @@ class _MButtonState extends State<MButton> {
           decoration: BoxDecoration(
               color: isHovered ? _bgHoverColor : _bgColor,
               borderRadius: BorderRadius.circular(radius_button),
-              border: Border.all(color: _borderColor)),
+              border: Border.all(width: 0.5, color: _borderColor)),
           child: Material(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(radius_button),

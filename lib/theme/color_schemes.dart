@@ -39,9 +39,9 @@ class MaviColorScheme {
         brightness: Brightness.light,
         //
         //
-        primary: light.primaryContainer,
+        primary: color.shade100,
         onPrimary: light.onPrimaryContainer,
-        primaryContainer: color.shade50,
+        primaryContainer: color.shade200,
         onPrimaryContainer: Colors.transparent,
       );
   ColorScheme get darkSoft => ColorScheme.fromSeed(
@@ -63,7 +63,7 @@ class MaviColorScheme {
         //
         primary: light.background,
         onPrimary: primaryColor,
-        primaryContainer: color.shade200,
+        primaryContainer: color.shade100,
         onPrimaryContainer: primaryColor,
       );
   ColorScheme get darkOutlined => ColorScheme.fromSeed(
@@ -85,8 +85,8 @@ class MaviColorScheme {
         //
         primary: light.background,
         onPrimary: primaryColor,
-        primaryContainer: color.shade200,
-        onPrimaryContainer: light.background,
+        primaryContainer: color.shade100,
+        onPrimaryContainer: Colors.transparent,
       );
   ColorScheme get darkPlain => ColorScheme.fromSeed(
         seedColor: primaryColor,
@@ -96,7 +96,7 @@ class MaviColorScheme {
         primary: dark.background,
         onPrimary: primaryColor,
         primaryContainer: color.shade700,
-        onPrimaryContainer: dark.background,
+        onPrimaryContainer: Colors.transparent,
       );
 
   MaterialColor _colorWithShades() => MaterialColor(primaryColor.value, const {
