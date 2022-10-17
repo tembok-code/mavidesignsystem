@@ -26,7 +26,7 @@ class SectionWidget extends StatelessWidget {
               padding: EdgeInsets.all(spacing_sm),
               child: MaviTextTheme()
                   .overline(text: title)
-                  .copyWith(newColor: colorScheme.outline)),
+                  .apply(newColor: colorScheme.outline)),
         ),
       )),
       SliverToBoxAdapter(child: maviThemeSpacer()),

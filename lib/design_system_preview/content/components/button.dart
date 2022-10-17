@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mavi_design_system/components/elements/frame.dart';
 import 'package:mavi_design_system/mavi_design_system.dart';
 
-import '../../../theme/theme.dart';
 import '../../components/components_preview.dart';
 
 class ContentButton extends StatefulWidget {
@@ -141,31 +141,33 @@ class _ContentButtonState extends State<ContentButton> {
       ]),
       SectionWidget(title: '$title - Sizes', slivers: [
         SliverToBoxAdapter(
-            child: Wrap(
-          spacing: spacing_md,
-          runSpacing: spacing_md,
-          alignment: WrapAlignment.center,
-          runAlignment: WrapAlignment.center,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            MButton(
-                onTap: () {},
-                label: 'Small',
-                variant: selectedVariant,
-                disabled: disabled,
-                size: ButtonSize.sm),
-            MButton(
-                onTap: () {},
-                label: 'Medium',
-                variant: selectedVariant,
-                disabled: disabled),
-            MButton(
-                onTap: () {},
-                label: 'Large',
-                variant: selectedVariant,
-                disabled: disabled,
-                size: ButtonSize.lg),
-          ],
+            child: MFrame(
+          child: Wrap(
+            spacing: spacing_md,
+            runSpacing: spacing_md,
+            alignment: WrapAlignment.center,
+            runAlignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              MButton(
+                  onTap: () {},
+                  label: 'Small',
+                  variant: selectedVariant,
+                  disabled: disabled,
+                  size: ButtonSize.sm),
+              MButton(
+                  onTap: () {},
+                  label: 'Medium',
+                  variant: selectedVariant,
+                  disabled: disabled),
+              MButton(
+                  onTap: () {},
+                  label: 'Large',
+                  variant: selectedVariant,
+                  disabled: disabled,
+                  size: ButtonSize.lg),
+            ],
+          ),
         ))
       ]),
       SectionWidget(title: '$title - Leading and Tailing', slivers: [

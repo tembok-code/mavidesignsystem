@@ -81,7 +81,7 @@ class MaviThemeTextWidget extends Text {
   final TextAlign align;
   final TextOverflow? overflow;
 
-  get getStyle => style.copyWith(
+  TextStyle get getStyle => style.copyWith(
       color: color ?? style.color,
       fontSize: MaviTextTheme().getSize(sizeFactor),
       fontWeight: style.fontWeight ?? FontWeight.normal);
@@ -99,9 +99,11 @@ class MaviThemeTextWidget extends Text {
     );
   }
 
-  MaviThemeTextWidget copyWith({TextStyle? newStyle, Color? newColor}) =>
+  MaviThemeTextWidget apply(
+          {TextStyle? newStyle, Color? newColor, double? newSizeFactor}) =>
       MaviThemeTextWidget(
         text: text,
+        sizeFactor: newSizeFactor ?? sizeFactor,
         style: newStyle ?? getStyle,
         color: newColor ?? color,
       );

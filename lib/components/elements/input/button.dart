@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+//
+import '../../../globals.dart' as globals;
+//
 import '../../../theme/theme.dart';
 
 enum ButtonVariant { plain, solid, outlined, soft }
@@ -85,27 +87,27 @@ class _MButtonState extends State<MButton> {
     }
     updateWidth();
     //
-    var colorScheme = MaviTheme().solid;
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     switch (_variant) {
       case ButtonVariant.soft:
-        colorScheme = MaviTheme().soft;
+        colorScheme = colorScheme.soft;
         break;
       case ButtonVariant.outlined:
-        colorScheme = MaviTheme().outlined;
+        colorScheme = colorScheme.outlined;
         break;
       case ButtonVariant.plain:
-        colorScheme = MaviTheme().plain;
+        colorScheme = colorScheme.plain;
         break;
       default:
-        colorScheme = MaviTheme().solid;
+        colorScheme = colorScheme.solid;
     }
     //
     Color _bgColor = colorScheme.primary;
     Color _labelColor = colorScheme.onPrimary;
     Color _bgHoverColor = colorScheme.primaryContainer;
-    Color _splashColor = MaviTheme().colorSwatch.shade800;
-    Color _borderColor = colorScheme.onPrimaryContainer;
+    Color _splashColor = colorScheme.onPrimaryContainer;
+    Color _borderColor = colorScheme.outline;
     //
     //
     //
@@ -134,7 +136,7 @@ class _MButtonState extends State<MButton> {
           decoration: BoxDecoration(
               color: isHovered ? _bgHoverColor : _bgColor,
               borderRadius: BorderRadius.circular(radius_button),
-              border: Border.all(width: 0.5, color: _borderColor)),
+              border: Border.all(width: 1, color: _borderColor)),
           child: Material(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(radius_button),
@@ -165,7 +167,7 @@ class _MButtonState extends State<MButton> {
                           if (widget.label != null)
                             MaviTextTheme()
                                 .buttonText(text: widget.label)
-                                .copyWith(newColor: _labelColor),
+                                .apply(newColor: _labelColor),
                           if (widget.tailing != null && widget.label != null)
                             maviThemeVerticalSpacer(size: spacing_sm),
                           if (widget.tailing != null)

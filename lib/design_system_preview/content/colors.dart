@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+//
+import '../../globals.dart' as globals;
+//
 import '../../theme/theme.dart';
 import '../components/components_preview.dart';
 
@@ -8,8 +11,8 @@ class ContentColors extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //
-    var colorScheme = Theme.of(context).colorScheme;
-    Color colorPrimary = colorScheme.primary;
+    var currentTheme = Theme.of(context);
+    var colorScheme = currentTheme.colorScheme;
     //
     String title = "Colors";
     //
@@ -28,7 +31,8 @@ class ContentColors extends StatelessWidget {
                       children: [
                         MaviTextTheme().h2(text: title),
                         maviThemeSpacer(),
-                        Container(color: colorPrimary, height: 2, width: 50),
+                        Container(
+                            color: colorScheme.primary, height: 2, width: 50),
                         maviThemeSpacer(),
                         MaviTextTheme().body(
                             text:
@@ -47,7 +51,7 @@ class ContentColors extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               MaviTheme().textTheme.h4(text: 'Light'),
-                              _ColorThemeGrid(scheme: MaviTheme().light),
+                              _ColorThemeGrid(scheme: colorScheme.light),
                             ],
                           ),
                         ),
@@ -57,7 +61,7 @@ class ContentColors extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               MaviTheme().textTheme.h4(text: 'Dark'),
-                              _ColorThemeGrid(scheme: MaviTheme().dark),
+                              _ColorThemeGrid(scheme: colorScheme.dark),
                             ],
                           ),
                         )
@@ -70,16 +74,28 @@ class ContentColors extends StatelessWidget {
           ),
         ]),
         SectionWidget(title: "$title - Swatches", slivers: [
-          SliverToBoxAdapter(
+          /* SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: margin_lg),
-              child: MaviTheme().textTheme.h4(text: 'Primary'),
+              child: MaviTheme().textTheme.h4(text: 'Primary (UIColors.app)'),
             ),
           ),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: margin_lg),
-              child: _ColorSwatchRow(color: MaviTheme().colorSwatch),
+              child: _ColorSwatchRow(color: MaviTheme().color),
+            ),
+          ), */
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: margin_lg),
+              child: MaviTheme().textTheme.h4(text: 'Primary (Calculated)'),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: margin_lg),
+              child: _ColorSwatchRow(color: colorScheme.primarySwatch),
             ),
           ),
           SliverToBoxAdapter(
@@ -91,7 +107,7 @@ class ContentColors extends StatelessWidget {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: margin_lg),
-              child: _ColorSwatchRow(color: MaviTheme().colorSecondarySwatch),
+              child: _ColorSwatchRow(color: colorScheme.secondarySwatch),
             ),
           ),
           SliverToBoxAdapter(
@@ -103,7 +119,7 @@ class ContentColors extends StatelessWidget {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: margin_lg),
-              child: _ColorSwatchRow(color: MaviTheme().colorNeutralSwatch),
+              child: _ColorSwatchRow(color: colorScheme.neutralSwatch),
             ),
           ),
         ]),
@@ -138,7 +154,7 @@ class _ColorThemeGrid extends StatelessWidget {
                   style: MaviTheme()
                       .textTheme
                       .bodySmallBold()
-                      .copyWith(newColor: onPrimary)
+                      .apply(newColor: onPrimary)
                       .getStyle,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -245,26 +261,44 @@ class _ColorSwatchRow extends StatelessWidget {
   final MaterialColor color;
   @override
   Widget build(BuildContext context) {
-    Widget swatchItem(int shade, Color color) => Expanded(
-          child: Container(
-            width: double.infinity,
-            height: button_height_lg * 2,
-            color: color,
-            padding: const EdgeInsets.all(spacing_sm),
-            child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Column(
-                  children: [
-                    MaviTheme().textTheme.bodyBold(text: '$shade'),
-                    MaviTheme().textTheme.bodySmall(
-                        text: color
-                            .toString()
-                            .replaceAll('Color(0xff', "#")
-                            .replaceAll(")", ""))
-                  ],
-                )),
-          ),
-        );
+    Widget swatchItem(int shade, Color itemColor) {
+      var hslColor = HSLColor.fromColor(itemColor);
+      Color textColor =
+          itemColor.lightness > 0.55 ? color.shade900 : color.shade50;
+      return Expanded(
+        child: Container(
+          width: double.infinity,
+          height: button_height_lg * 2,
+          color: itemColor,
+          padding: const EdgeInsets.all(spacing_sm),
+          child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Column(
+                children: [
+                  MaviTheme()
+                      .textTheme
+                      .bodyBold(text: '$shade')
+                      .apply(newColor: textColor),
+                  MaviTheme()
+                      .textTheme
+                      .bodySmall(
+                          text: itemColor
+                              .toString()
+                              .replaceAll('Color(0xff', "#")
+                              .replaceAll(")", ""))
+                      .apply(newColor: textColor),
+                  MaviTheme()
+                      .textTheme
+                      .bodySmall(
+                          text:
+                              'h: ${hslColor.hue.toInt()} s: ${hslColor.saturation.toStringAsPrecision(2)}, l: ${itemColor.lightness.toStringAsPrecision(2)}')
+                      .apply(newColor: textColor)
+                ],
+              )),
+        ),
+      );
+    }
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(radius_container),
       child: Row(

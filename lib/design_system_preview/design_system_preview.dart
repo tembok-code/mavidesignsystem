@@ -38,7 +38,7 @@ class _MaviDesignSystemPreviewState extends State<MaviDesignSystemPreview> {
         children: [
           Container(
               width: 150,
-              //color: colorScheme.surface,
+              color: colorScheme.surface,
               child: Column(
                 children: [
                   Expanded(
@@ -112,7 +112,7 @@ Widget _ContentButtonWidget(
                     maviThemeVerticalSpacer(size: spacing_sm),
                     Expanded(
                       child: isSelected || isChildSelected
-                          ? MaviTextTheme().bodyBold(text: route.name).copyWith(
+                          ? MaviTextTheme().bodyBold(text: route.name).apply(
                                 newColor:
                                     level > 1 && isSelected ? primary : null,
                               )
