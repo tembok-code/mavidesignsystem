@@ -135,7 +135,7 @@ Widget _ContentButtonWidget(
         ListView(shrinkWrap: true, children: [
           ...children
               .map((e) => _ContentButtonWidget(context, e,
-                  level: 2,
+                  level: level + 1,
                   currentRoute: currentRoute,
                   hovered: hovered,
                   setPage: setPage,
@@ -152,8 +152,12 @@ List<_RouteModel> _routes = [
   _RouteModel(name: "Typography", content: ContentTypography()),
   _RouteModel(name: "Icons"),
   _RouteModel(name: "Components", subRoutes: [
-    _RouteModel(name: "Button", content: ContentButton()),
-    _RouteModel(name: "Inputs"),
+    _RouteModel(name: 'Inputs', isSection: true, subRoutes: [
+      _RouteModel(name: "Button", content: ContentButton()),
+    ]),
+    _RouteModel(name: "Forms", isSection: true),
+    _RouteModel(name: "List", isSection: true),
+    _RouteModel(name: "Layout", isSection: true),
   ])
 ];
 
@@ -161,8 +165,13 @@ class _RouteModel {
   final String name;
   final Widget? content;
   final List<_RouteModel>? subRoutes;
+  final bool isSection;
 
-  _RouteModel({required this.name, this.content, this.subRoutes});
+  _RouteModel(
+      {required this.name,
+      this.content,
+      this.subRoutes,
+      this.isSection = false});
 }
 
 List<Widget> _page404({_RouteModel? route}) => [

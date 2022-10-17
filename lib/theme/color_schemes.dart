@@ -179,15 +179,12 @@ class MaviColorScheme {
         outline: Colors.transparent,
       );
 
-  ColorScheme get darkPlainScheme => ColorScheme.fromSeed(
-        seedColor: primaryColor,
-        brightness: Brightness.dark,
-        //
-        //
+  ColorScheme get darkPlainScheme => light.copyWith(
         primary: dark.background,
-        onPrimary: primaryColor,
-        primaryContainer: color.shade700,
-        onPrimaryContainer: Colors.transparent,
+        onPrimary: dark.primary,
+        primaryContainer: color.shade900,
+        onPrimaryContainer: light.onPrimaryContainer,
+        outline: Colors.transparent,
       );
 
   /*  MaterialColor _colorWithShades() => MaterialColor(primaryColor.value, const {
