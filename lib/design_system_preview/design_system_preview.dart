@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mavi_design_system/design_system_preview/content/components/switch.dart';
 
+import '../components/components.dart';
 import '../theme/theme.dart';
 import 'content/content_preview.dart';
 
@@ -60,7 +62,13 @@ class _MaviDesignSystemPreviewState extends State<MaviDesignSystemPreview> {
                       ],
                     ),
                   ),
-                  Switch(value: true, onChanged: (value) {})
+                  MSwitch(
+                      size: ButtonSize.sm,
+                      onIcon: Icons.nightlight_outlined,
+                      offIcon: Icons.wb_sunny_outlined,
+                      value: false,
+                      onChanged: (value) {}),
+                  maviThemeSpacer(size: margin_lg)
                 ],
               )),
           Expanded(
@@ -154,6 +162,7 @@ List<_RouteModel> _routes = [
   _RouteModel(name: "Components", subRoutes: [
     _RouteModel(name: 'Inputs', isSection: true, subRoutes: [
       _RouteModel(name: "Button", content: ContentButton()),
+      _RouteModel(name: "Switch", content: ContentSwitch()),
     ]),
     _RouteModel(name: "Forms", isSection: true),
     _RouteModel(name: "List", isSection: true),

@@ -6,6 +6,30 @@ import '../../../theme/theme.dart';
 
 enum ButtonVariant { plain, solid, outlined, soft }
 
+extension ButtonVariantsExtension on ButtonVariant {
+  ColorScheme get colorScheme {
+    switch (this) {
+      case ButtonVariant.soft:
+        return globals.brightness == Brightness.light
+            ? globals.palette.colorScheme.lightSoft
+            : globals.palette.colorScheme.darkSoft;
+      case ButtonVariant.outlined:
+        return globals.brightness == Brightness.light
+            ? globals.palette.colorScheme.lightOutlined
+            : globals.palette.colorScheme.darkOutlined;
+      case ButtonVariant.plain:
+        return globals.brightness == Brightness.light
+            ? globals.palette.colorScheme.lightPlain
+            : globals.palette.colorScheme.darkPlain;
+
+      default:
+        return globals.brightness == Brightness.light
+            ? globals.palette.colorScheme.lightSolid
+            : globals.palette.colorScheme.darkSolid;
+    }
+  }
+}
+
 enum ButtonSize { sm, md, lg }
 
 extension ButtonSizeValue on ButtonSize {
