@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+//
+import '../../globals.dart' as globals;
+//
+
+import './color_theme.dart';
+
 class MaviTextTheme {
   final double fontSize;
   MaviTextTheme({this.fontSize = 12}) : bodyFontSize = fontSize;
 
   late double bodyFontSize;
+
+  Color overlineColor = globals.themeData.colorScheme.neutralSwatch.shade300;
 
   //TODO: Allow font size change from Provider
 
@@ -31,7 +39,7 @@ enum MaviTextStyles {
       isHeading: true,
       letterSpacing: 2,
       upperCase: true,
-      color: Colors.black26,
+      shade: 'shade300',
       sizeFactor: 14 / 16),
   bodyBig(sizeFactor: 18 / 16),
   body(),
@@ -43,6 +51,7 @@ enum MaviTextStyles {
   final bool upperCase;
   final double? sizeFactor;
   final Color? color;
+  final String? shade;
 
   const MaviTextStyles(
       {this.isHeading = false,
@@ -50,7 +59,8 @@ enum MaviTextStyles {
       this.letterSpacing,
       this.upperCase = false,
       this.sizeFactor,
-      this.color});
+      this.color,
+      this.shade});
 
   TextStyle get style {
     TextStyle _style = isHeading
@@ -59,9 +69,18 @@ enum MaviTextStyles {
     double _size = MaviTextTheme().getSize(sizeFactor ?? 1);
     return _style.copyWith(
       fontSize: _size,
-      color: color,
+      color: textColor(shade),
       letterSpacing: letterSpacing,
     );
+  }
+
+  Color? textColor(String? shade) {
+    switch (shade) {
+      case 'shade300':
+        return globals.themeData.colorScheme.neutralSwatch.shade300;
+      default:
+        return color;
+    }
   }
 
   Widget widget(String? text, {Color? color}) {
