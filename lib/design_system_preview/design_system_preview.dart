@@ -70,8 +70,8 @@ class _MaviDesignSystemPreviewState extends State<MaviDesignSystemPreview> {
                   ),
                   MSwitch(
                       size: ButtonSize.sm,
-                      onIcon: Icons.dark_mode_outlined,
-                      offIcon: Icons.light_mode_outlined,
+                      offIcon: Icons.dark_mode_outlined,
+                      onIcon: Icons.light_mode_outlined,
                       value: currentMode == ThemeMode.dark,
                       onChanged: (value) => themeProvider.toggleMode()),
                   maviThemeSpacer(size: margin_lg)
@@ -172,6 +172,10 @@ List<_RouteModel> _routes = [
     ]),
     _RouteModel(name: "Forms", isSection: true),
     _RouteModel(name: "List", isSection: true),
+    _RouteModel(name: "Contents", isSection: true, subRoutes: [
+      _RouteModel(name: "Text"),
+      _RouteModel(name: "Frame"),
+    ]),
     _RouteModel(name: "Layout", isSection: true),
   ])
 ];

@@ -87,7 +87,7 @@ class _ContentButtonState extends State<ContentButton> {
                     Row(
                       children: [
                         MaviTextTheme().bodyBold(text: 'Disabled'),
-                        Switch(
+                        MSwitch(
                             value: disabled,
                             onChanged: (value) => toggleDisabled())
                       ],
