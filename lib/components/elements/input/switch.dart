@@ -62,11 +62,11 @@ class _MSwitchState extends State<MSwitch> {
       case false:
         if (widget.variant != ButtonVariant.outlined &&
             widget.variant != ButtonVariant.plain)
-          _bgColor = neutralSwatch.shade300;
+          _bgColor = neutralSwatch.shade400;
         _circleColor = widget.variant != ButtonVariant.outlined &&
                 widget.variant != ButtonVariant.plain
             ? neutralSwatch.shade50
-            : neutralSwatch.shade300;
+            : neutralSwatch.shade400;
         _borderColor = widget.variant == ButtonVariant.outlined
             ? neutralSwatch.shade100
             : _borderColor;

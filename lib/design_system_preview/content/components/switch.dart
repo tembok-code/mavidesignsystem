@@ -13,10 +13,10 @@ class ContentSwitch extends StatefulWidget {
 
 class _ContentSwitchState extends State<ContentSwitch> {
   //
-  bool checked = false;
+  bool checked = true;
   ButtonVariant selectedVariant = ButtonVariant.solid;
   List<bool> selectedSizeState = [false, true, false];
-  ButtonSize selectedSize = ButtonSize.md;
+  ButtonSize selectedSize = ButtonSize.sm;
   List<ButtonSize> buttonSizeOptions = [
     ButtonSize.sm,
     ButtonSize.md,
@@ -128,6 +128,54 @@ class _ContentSwitchState extends State<ContentSwitch> {
             ),
           ),
         ),
+      ]),
+      SectionWidget(title: '$title - Sizes', slivers: [
+        SliverToBoxAdapter(
+            child: MFrame(
+          child: Wrap(
+            spacing: spacing_md,
+            runSpacing: spacing_md,
+            alignment: WrapAlignment.center,
+            runAlignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: ButtonSize.values
+                .map(
+                  (e) => MSwitch(
+                    value: checked,
+                    onChanged: (value) => toggleSwitch(value),
+                    variant: selectedVariant,
+                    //disabled: disabled,
+                    size: e,
+                  ),
+                )
+                .toList(),
+          ),
+        ))
+      ]),
+      SectionWidget(title: '$title - On Off Icons', slivers: [
+        SliverToBoxAdapter(
+            child: MFrame(
+          child: Wrap(
+            spacing: spacing_md,
+            runSpacing: spacing_md,
+            alignment: WrapAlignment.center,
+            runAlignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: ButtonSize.values
+                .map(
+                  (e) => MSwitch(
+                    value: checked,
+                    onChanged: (value) => toggleSwitch(value),
+                    variant: selectedVariant,
+                    onIcon: Icons.light_mode_outlined,
+                    offIcon: Icons.dark_mode_outlined,
+                    //disabled: disabled,
+                    size: e,
+                  ),
+                )
+                .toList(),
+          ),
+        ))
       ]),
     ]);
   }
