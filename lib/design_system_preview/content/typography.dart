@@ -108,11 +108,13 @@ class ContentTypography extends StatelessWidget {
                     MaviTextStyles.bodyBig, 'Body Big - $bodyTextSample'),
                 _fontStyleRow(MaviTextStyles.body, 'Body - $bodyTextSample'),
                 _fontStyleRow(
-                    MaviTextStyles.body, 'Body Bold - $bodyTextSample'),
+                    MaviTextStyles.body, 'Body Bold - $bodyTextSample',
+                    bold: true),
                 _fontStyleRow(
                     MaviTextStyles.bodySmall, 'Body Small - $bodyTextSample'),
                 _fontStyleRow(MaviTextStyles.bodySmall,
-                    'Body Small Bold - $bodyTextSample'),
+                    'Body Small Bold - $bodyTextSample',
+                    bold: true),
               ].map((e) => Column(children: [e, maviThemeSpacer()])).toList(),
             ),
           ),
@@ -178,7 +180,8 @@ Widget _fontResume({required String fontName, String? use, TextStyle? style}) {
                   children: [
                     Text(
                       fontName,
-                      style: style,
+                      style: style?.copyWith(
+                          fontSize: 14, fontWeight: FontWeight.bold),
                     ),
                     if (use != null) Text(use)
                   ],
@@ -190,7 +193,7 @@ Widget _fontResume({required String fontName, String? use, TextStyle? style}) {
               child: Text(
             "Aa",
             textScaleFactor: 6,
-            style: style,
+            style: style?.copyWith(fontSize: 24),
           ))
         ],
       ),
@@ -202,7 +205,7 @@ Widget _fontResume({required String fontName, String? use, TextStyle? style}) {
               "ABCDEFGHIJKLMNOPQRSTUVWXYZ\n"
               "abcdefghijklmnopqrstuvxyz\n"
               "0 1 2 3 4 5 6 7 8 9",
-              style: style,
+              style: style?.copyWith(fontSize: MaviTextTheme().bodyFontSize),
             ),
           )
         ],
@@ -211,24 +214,38 @@ Widget _fontResume({required String fontName, String? use, TextStyle? style}) {
   );
 }
 
-Widget _fontStyleRow(MaviTextStyles textStyle, String description) {
+Widget _fontStyleRow(MaviTextStyles textStyle, String description,
+    {bool bold = false}) {
   return DefaultTextStyle.merge(
     style: textStyle.style,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(flex: 2, child: textStyle.widget(description)),
+        Expanded(
+            flex: 2,
+            child: MText(
+              description,
+              style: textStyle,
+              fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+            )),
         Expanded(
             child: Align(
-                alignment: Alignment.centerRight,
-                child: textStyle.widget(textStyle.style.fontWeight
-                    .toString()
-                    .replaceAll("FontWeight.", "")))),
+          alignment: Alignment.centerRight,
+          child: MText(
+            textStyle.style.fontWeight.toString().replaceAll("FontWeight.", ""),
+            style: textStyle,
+            fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+          ),
+        )),
         Expanded(
             child: Align(
-                alignment: Alignment.centerRight,
-                child:
-                    textStyle.widget("${textStyle.style.fontSize?.toInt()}"))),
+          alignment: Alignment.centerRight,
+          child: MText(
+            "${textStyle.style.fontSize?.toInt()}",
+            style: textStyle,
+            fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+          ),
+        )),
       ],
     ),
   );

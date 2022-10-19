@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const double bodyFontSize = 12.0; //TODO: Allow font size change from Provider
+class MaviTextTheme {
+  final double fontSize;
+  MaviTextTheme({this.fontSize = 12}) : bodyFontSize = fontSize;
 
-double _getSize(double factor) => (bodyFontSize * factor).truncateToDouble();
+  late double bodyFontSize;
+
+  //TODO: Allow font size change from Provider
+
+// Default Body and Heading Styles and fonts
+  TextStyle headingStyle({FontWeight? fontWeight}) =>
+      GoogleFonts.poppins(fontWeight: fontWeight ?? FontWeight.bold);
+  TextStyle bodyStyle({FontWeight? fontWeight}) =>
+      GoogleFonts.hind(fontWeight: fontWeight ?? FontWeight.normal);
+  //
+
+  double getSize(double factor) => (bodyFontSize * factor).truncateToDouble();
+}
 
 enum MaviTextStyles {
   // Default Text Styles
@@ -24,31 +38,25 @@ enum MaviTextStyles {
   bodySmall(sizeFactor: 14 / 16);
 
   final bool isHeading;
-  final FontWeight fontWeight;
+  final FontWeight? fontWeight;
   final double? letterSpacing;
   final bool upperCase;
-  final double sizeFactor;
+  final double? sizeFactor;
   final Color? color;
 
   const MaviTextStyles(
       {this.isHeading = false,
-      this.fontWeight = FontWeight.normal,
+      this.fontWeight,
       this.letterSpacing,
       this.upperCase = false,
-      this.sizeFactor = bodyFontSize / 16,
+      this.sizeFactor,
       this.color});
-
-// Default Body and Heading Styles and fonts
-  static TextStyle headingStyle({FontWeight? fontWeight = FontWeight.bold}) =>
-      GoogleFonts.poppins(fontWeight: fontWeight);
-  static TextStyle bodyStyle({FontWeight? fontWeight = FontWeight.normal}) =>
-      GoogleFonts.hind(fontWeight: fontWeight);
 
   TextStyle get style {
     TextStyle _style = isHeading
-        ? headingStyle(fontWeight: fontWeight)
-        : bodyStyle(fontWeight: fontWeight);
-    double _size = _getSize(sizeFactor);
+        ? MaviTextTheme().headingStyle(fontWeight: fontWeight)
+        : MaviTextTheme().bodyStyle(fontWeight: fontWeight);
+    double _size = MaviTextTheme().getSize(sizeFactor ?? 1);
     return _style.copyWith(
       fontSize: _size,
       color: color,

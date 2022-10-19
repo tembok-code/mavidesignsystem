@@ -29,6 +29,12 @@ class MText extends StatelessWidget {
       fontSize: fontSize ?? __style.fontSize,
       overflow: overFlow ?? __style.overflow,
     );
+    String _text = text ?? 'Text';
+    _text = _style.upperCase ? _text.toUpperCase() : _text;
+    return Text(
+      _text,
+      style: __style,
+    );
     return _style.widget(text, color: color);
   }
 }

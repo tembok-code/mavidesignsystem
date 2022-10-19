@@ -90,7 +90,7 @@ class _MButtonState extends State<MButton> {
 
   void updateWidth() {
     var __padding = spacing_md * 2;
-    var __label = (widget.label ?? '').length * bodyFontSize;
+    var __label = (widget.label ?? '').length * MaviTextTheme().bodyFontSize;
     var __icons =
         ((widget.leading != null ? 1 : 0) + (widget.tailing != null ? 1 : 0)) *
             widget.size.value();
