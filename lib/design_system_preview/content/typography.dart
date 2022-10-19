@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mavi_design_system/components/elements/contents/text.dart';
 import '../../theme/theme.dart';
 import '../components/components_preview.dart';
 
@@ -31,27 +32,24 @@ class ContentTypography extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      MaviTextTheme().h2(text: title),
+                      MText(title, style: MaviTextStyles.h2),
                       maviThemeSpacer(),
                       Container(color: colorPrimary, height: 2, width: 50),
                       maviThemeSpacer(),
-                      MaviTextTheme().body(
-                          text:
-                              'As a web font you should use Poppins for all headlines and Hind for body text. Every graphic design artwork should be made using these two fonts.'),
+                      const MText(
+                          'As a web font you should use Poppins for all headlines and Hind for body text. Every graphic design artwork should be made using these two fonts.'),
                       maviThemeSpacer(),
-                      MaviTextTheme().bodyBig(text: 'Headlines'),
-                      MaviTextTheme().bodyBold(
-                          text: 'https://fonts.google.com/specimen/Poppins'),
-                      MaviTextTheme().body(
-                          text:
-                              'The Devanagari is designed by Ninad Kale. The Latin is by Jonny Pinhorn. TO controbute, see github.com/itfoundary/poppins'),
+                      const MText('Headlines', style: MaviTextStyles.bodyBig),
+                      const MText('https://fonts.google.com/specimen/Poppins',
+                          fontWeight: FontWeight.bold),
+                      const MText(
+                          'The Devanagari is designed by Ninad Kale. The Latin is by Jonny Pinhorn. TO controbute, see github.com/itfoundary/poppins'),
                       maviThemeSpacer(),
-                      MaviTextTheme().bodyBig(text: 'Body Text'),
-                      MaviTextTheme().bodyBold(
-                          text: 'https://fonts.google.com/specimen/Hind'),
-                      MaviTextTheme().body(
-                          text:
-                              'Designed by: Manushi Parikh for the indian Type Foundry, who first published the fonts in 2014.'),
+                      const MText('Body Text', style: MaviTextStyles.bodyBig),
+                      const MText('https://fonts.google.com/specimen/Hind',
+                          fontWeight: FontWeight.bold),
+                      const MText(
+                          'Designed by: Manushi Parikh for the indian Type Foundry, who first published the fonts in 2014.'),
                     ],
                   )),
                   SizedBox(height: 100, child: maviThemeVerticalSpacer()),
@@ -62,11 +60,11 @@ class ContentTypography extends StatelessWidget {
                         _fontResume(
                             fontName: "Poppins",
                             use: "Headings",
-                            style: MaviTextTheme().headingStyle()),
+                            style: MaviTextStyles.h1.style),
                         _fontResume(
                             fontName: "Hind",
                             use: "Body",
-                            style: MaviTextTheme().bodyStyle()),
+                            style: MaviTextStyles.body.style),
                       ],
                     ),
                   ),
@@ -81,14 +79,21 @@ class ContentTypography extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _fontStyleRow(MaviTextTheme().h1(), 'This is a Header H1'),
-                _fontStyleRow(MaviTextTheme().h2(), 'This is a Header H2'),
-                _fontStyleRow(MaviTextTheme().h3(), 'This is a Header H3'),
-                _fontStyleRow(MaviTextTheme().h4(), 'This is a Header H4'),
+                ...[
+                  MaviTextStyles.h1,
+                  MaviTextStyles.h2,
+                  MaviTextStyles.h3,
+                  MaviTextStyles.h4
+                ]
+                    .map((e) => _fontStyleRow(
+                          e,
+                          'This is a Header ${e.name.toUpperCase()}',
+                        ))
+                    .toList(),
                 _fontStyleRow(
-                    MaviTextTheme().subtitle(), 'This is a big subtitle'),
-                _fontStyleRow(MaviTextTheme().buttonText(), 'Button Text'),
-                _fontStyleRow(MaviTextTheme().overline(), 'Overline'),
+                    MaviTextStyles.subtitle, 'This is a big subtitle'),
+                _fontStyleRow(MaviTextStyles.buttonText, 'Button Text'),
+                _fontStyleRow(MaviTextStyles.overline, 'Overline'),
               ].map((e) => Column(children: [e, maviThemeSpacer()])).toList(),
             ),
           ),
@@ -100,13 +105,13 @@ class ContentTypography extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _fontStyleRow(
-                    MaviTextTheme().bodyBig(), 'Body Big - $bodyTextSample'),
-                _fontStyleRow(MaviTextTheme().body(), 'Body - $bodyTextSample'),
+                    MaviTextStyles.bodyBig, 'Body Big - $bodyTextSample'),
+                _fontStyleRow(MaviTextStyles.body, 'Body - $bodyTextSample'),
                 _fontStyleRow(
-                    MaviTextTheme().bodyBold(), 'Body Bold - $bodyTextSample'),
-                _fontStyleRow(MaviTextTheme().bodySmall(),
-                    'Body Small - $bodyTextSample'),
-                _fontStyleRow(MaviTextTheme().bodySmallBold(),
+                    MaviTextStyles.body, 'Body Bold - $bodyTextSample'),
+                _fontStyleRow(
+                    MaviTextStyles.bodySmall, 'Body Small - $bodyTextSample'),
+                _fontStyleRow(MaviTextStyles.bodySmall,
                     'Body Small Bold - $bodyTextSample'),
               ].map((e) => Column(children: [e, maviThemeSpacer()])).toList(),
             ),
@@ -123,13 +128,12 @@ class ContentTypography extends StatelessWidget {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        '&',
-                        style:
-                            MaviTextTheme().bodyStyle().copyWith(fontSize: 112),
+                    children: const [
+                      MText('&', fontSize: 112),
+                      MText(
+                        'Pairing\nFonts\nBoard',
+                        style: MaviTextStyles.h3,
                       ),
-                      MaviTextTheme().h3(text: 'Pairing\nFonts\nBoard'),
                     ],
                   )),
                   Expanded(
@@ -138,21 +142,13 @@ class ContentTypography extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          MaviTextTheme().h1(text: 'Awesome'),
-                          Text(
-                            'Font pairing',
-                            style: MaviTextTheme()
-                                .bodyStyle()
-                                .copyWith(fontSize: 32),
-                          ),
+                          MText('Awesome', style: MaviTextStyles.h1),
+                          MText('Font pairing', fontSize: 32),
                           Row(
                             children: [
-                              Expanded(
-                                  child:
-                                      MaviTextTheme().body(text: loremIpsum)),
+                              Expanded(child: MText(loremIpsum)),
                               maviThemeVerticalSpacer(),
-                              Expanded(
-                                  child: MaviTextTheme().body(text: loremIpsum))
+                              Expanded(child: MText(loremIpsum))
                             ],
                           )
                         ],
@@ -215,25 +211,24 @@ Widget _fontResume({required String fontName, String? use, TextStyle? style}) {
   );
 }
 
-Widget _fontStyleRow(MaviThemeTextWidget textStyle, String description) {
+Widget _fontStyleRow(MaviTextStyles textStyle, String description) {
   return DefaultTextStyle.merge(
-    style: textStyle.getStyle,
+    style: textStyle.style,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(flex: 2, child: textStyle.textWidget(text: description)),
+        Expanded(flex: 2, child: textStyle.widget(description)),
         Expanded(
             child: Align(
                 alignment: Alignment.centerRight,
-                child: textStyle.textWidget(
-                    text: textStyle.getStyle.fontWeight
-                        .toString()
-                        .replaceAll("FontWeight.", "")))),
+                child: textStyle.widget(textStyle.style.fontWeight
+                    .toString()
+                    .replaceAll("FontWeight.", "")))),
         Expanded(
             child: Align(
                 alignment: Alignment.centerRight,
-                child: textStyle.textWidget(
-                    text: "${textStyle.getStyle.fontSize?.toInt()}"))),
+                child:
+                    textStyle.widget("${textStyle.style.fontSize?.toInt()}"))),
       ],
     ),
   );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../globals.dart' as globals;
 //
 import '../../../theme/theme.dart';
+import '../contents/text.dart';
 
 enum ButtonVariant { plain, solid, outlined, soft }
 
@@ -89,7 +90,7 @@ class _MButtonState extends State<MButton> {
 
   void updateWidth() {
     var __padding = spacing_md * 2;
-    var __label = (widget.label ?? '').length * MaviTextTheme().bodyFontSize;
+    var __label = (widget.label ?? '').length * bodyFontSize;
     var __icons =
         ((widget.leading != null ? 1 : 0) + (widget.tailing != null ? 1 : 0)) *
             widget.size.value();
@@ -189,9 +190,11 @@ class _MButtonState extends State<MButton> {
                           if (widget.leading != null && widget.label != null)
                             maviThemeVerticalSpacer(size: spacing_sm),
                           if (widget.label != null)
-                            MaviTextTheme()
-                                .buttonText(text: widget.label)
-                                .apply(newColor: _labelColor),
+                            MText(
+                              widget.label,
+                              style: MaviTextStyles.buttonText,
+                              color: _labelColor,
+                            ),
                           if (widget.tailing != null && widget.label != null)
                             maviThemeVerticalSpacer(size: spacing_sm),
                           if (widget.tailing != null)

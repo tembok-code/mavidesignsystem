@@ -9,9 +9,6 @@ export 'sizes_theme.dart';
 //
 
 class MaviTheme {
-  //
-  MaviTextTheme get textTheme => MaviTextTheme();
-
   ThemeData themeData({Brightness? overrideBrightness}) {
     late ColorScheme _scheme;
     switch (overrideBrightness ?? globals.brightness) {

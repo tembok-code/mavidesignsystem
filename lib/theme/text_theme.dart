@@ -1,115 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MaviTextTheme {
-//
-  final bodyFontSize = 12.0;
-  double getSize(double factor) => (bodyFontSize * factor).truncateToDouble();
-//
-  TextOverflow overflow = TextOverflow.fade;
-//
+const double bodyFontSize = 12.0; //TODO: Allow font size change from Provider
 
-  TextStyle headingStyle({FontWeight? fontWeight = FontWeight.bold}) =>
-      GoogleFonts.poppins(fontWeight: fontWeight);
-  TextStyle bodyStyle({FontWeight? fontWeight = FontWeight.normal}) =>
-      GoogleFonts.hind(fontWeight: fontWeight);
+double _getSize(double factor) => (bodyFontSize * factor).truncateToDouble();
 
-//* HEADINGS
-  MaviThemeTextWidget h1({String? text}) => MaviThemeTextWidget(
-      text: text, style: headingStyle(), sizeFactor: 54 / 16);
-  MaviThemeTextWidget h2({String? text}) => MaviThemeTextWidget(
-      text: text, style: headingStyle(), sizeFactor: 32 / 16);
-  MaviThemeTextWidget h3({String? text}) => MaviThemeTextWidget(
-      text: text, style: headingStyle(), sizeFactor: 24 / 16);
-  MaviThemeTextWidget h4({String? text}) => MaviThemeTextWidget(
-      text: text,
-      style: headingStyle(fontWeight: FontWeight.w600),
-      sizeFactor: 21 / 16);
-  MaviThemeTextWidget subtitle({String? text}) => MaviThemeTextWidget(
-      text: text,
-      style: headingStyle(fontWeight: FontWeight.w300),
-      sizeFactor: 24 / 16);
-  MaviThemeTextWidget buttonText({String? text}) => MaviThemeTextWidget(
-        text: text,
-        style: headingStyle(fontWeight: FontWeight.w600),
-        upperCase: true,
-      );
-  MaviThemeTextWidget overline({String? text}) => MaviThemeTextWidget(
-      text: text,
-      style: headingStyle().copyWith(letterSpacing: 2),
+enum MaviTextStyles {
+  // Default Text Styles
+  h1(isHeading: true, sizeFactor: 54 / 16),
+  h2(isHeading: true, sizeFactor: 32 / 16),
+  h3(isHeading: true, sizeFactor: 24 / 16),
+  h4(isHeading: true, fontWeight: FontWeight.w600, sizeFactor: 21 / 16),
+  subtitle(isHeading: true, fontWeight: FontWeight.w300, sizeFactor: 24 / 16),
+  buttonText(isHeading: true, fontWeight: FontWeight.w600, upperCase: true),
+  overline(
+      isHeading: true,
+      letterSpacing: 2,
       upperCase: true,
       color: Colors.black26,
-      sizeFactor: 14 / 16);
-//
-//* BODY
-  TextAlign _bodyAlign = TextAlign.justify;
-  MaviThemeTextWidget bodyBig({String? text}) => MaviThemeTextWidget(
-      text: text, style: bodyStyle(), align: _bodyAlign, sizeFactor: 18 / 16);
-  MaviThemeTextWidget body({String? text}) =>
-      MaviThemeTextWidget(text: text, style: bodyStyle(), align: _bodyAlign);
-  MaviThemeTextWidget bodyBold({String? text}) => MaviThemeTextWidget(
-      text: text,
-      style: bodyStyle(fontWeight: FontWeight.bold),
-      align: _bodyAlign);
-  MaviThemeTextWidget bodySmall({String? text}) => MaviThemeTextWidget(
-      text: text, style: bodyStyle(), align: _bodyAlign, sizeFactor: 14 / 16);
-  MaviThemeTextWidget bodySmallBold({String? text}) => MaviThemeTextWidget(
-      text: text,
-      style: bodyStyle(fontWeight: FontWeight.bold),
-      align: _bodyAlign,
-      sizeFactor: 14 / 16);
+      sizeFactor: 14 / 16),
+  bodyBig(sizeFactor: 18 / 16),
+  body(),
+  bodySmall(sizeFactor: 14 / 16);
 
-//
-}
-
-class MaviThemeTextWidget extends Text {
-  const MaviThemeTextWidget(
-      {super.key,
-      this.text,
-      required this.style,
-      this.upperCase = false,
-      this.color,
-      this.align = TextAlign.left,
-      this.sizeFactor = 1,
-      this.overflow})
-      : super('');
-  final String? text;
-  final TextStyle style;
+  final bool isHeading;
+  final FontWeight fontWeight;
+  final double? letterSpacing;
   final bool upperCase;
-  final Color? color;
   final double sizeFactor;
-  final TextAlign align;
-  final TextOverflow? overflow;
+  final Color? color;
 
-  TextStyle get getStyle => style.copyWith(
-      color: color ?? style.color,
-      fontSize: MaviTextTheme().getSize(sizeFactor),
-      fontWeight: style.fontWeight ?? FontWeight.normal);
+  const MaviTextStyles(
+      {this.isHeading = false,
+      this.fontWeight = FontWeight.normal,
+      this.letterSpacing,
+      this.upperCase = false,
+      this.sizeFactor = bodyFontSize / 16,
+      this.color});
 
-  Text textWidget({String? text}) {
-    String _text = text ?? 'Text';
-    _text = upperCase ? _text.toUpperCase() : _text;
+// Default Body and Heading Styles and fonts
+  static TextStyle headingStyle({FontWeight? fontWeight = FontWeight.bold}) =>
+      GoogleFonts.poppins(fontWeight: fontWeight);
+  static TextStyle bodyStyle({FontWeight? fontWeight = FontWeight.normal}) =>
+      GoogleFonts.hind(fontWeight: fontWeight);
 
-    return Text(
-      _text,
-      overflow: overflow,
-      //softWrap: true,
-      textAlign: align,
-      style: getStyle,
+  TextStyle get style {
+    TextStyle _style = isHeading
+        ? headingStyle(fontWeight: fontWeight)
+        : bodyStyle(fontWeight: fontWeight);
+    double _size = _getSize(sizeFactor);
+    return _style.copyWith(
+      fontSize: _size,
+      color: color,
+      letterSpacing: letterSpacing,
     );
   }
 
-  MaviThemeTextWidget apply(
-          {TextStyle? newStyle, Color? newColor, double? newSizeFactor}) =>
-      MaviThemeTextWidget(
-        text: text,
-        sizeFactor: newSizeFactor ?? sizeFactor,
-        style: newStyle ?? getStyle,
-        color: newColor ?? color,
-      );
-
-  @override
-  Widget build(BuildContext context) {
-    return textWidget(text: text);
+  Widget widget(String? text, {Color? color}) {
+    String _text = text ?? "Text";
+    _text = upperCase ? _text.toUpperCase() : _text;
+    return Text(
+      _text,
+      style: style.copyWith(color: color),
+    );
   }
 }

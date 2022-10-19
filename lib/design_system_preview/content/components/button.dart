@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mavi_design_system/components/elements/contents/text.dart';
 import 'package:mavi_design_system/components/elements/frame.dart';
 import 'package:mavi_design_system/mavi_design_system.dart';
 
@@ -83,10 +84,10 @@ class _ContentButtonState extends State<ContentButton> {
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    MaviTextTheme().h4(text: 'Playground'),
+                    const MText('Playground', style: MaviTextStyles.h4),
                     Row(
                       children: [
-                        MaviTextTheme().bodyBold(text: 'Disabled'),
+                        const MText('Disabled', fontWeight: FontWeight.bold),
                         MSwitch(
                             value: disabled,
                             onChanged: (value) => toggleDisabled())
@@ -94,40 +95,39 @@ class _ContentButtonState extends State<ContentButton> {
                     ),
                     Row(
                       children: [
-                        MaviTextTheme().bodyBold(text: 'Size'),
+                        const MText('Size', fontWeight: FontWeight.bold),
                         ToggleButtons(
                           isSelected: selectedSizeState,
                           onPressed: (index) => setSize(index),
                           children: const [
-                            Text('Small'),
-                            Text('Medium'),
-                            Text('Large')
+                            MText('Small'),
+                            MText('Medium'),
+                            MText('Large')
                           ],
                         )
                       ],
                     ),
                     Row(
                       children: [
-                        MaviTextTheme().bodyBold(text: 'Variant'),
+                        const MText('Variant', fontWeight: FontWeight.bold),
                         DropdownButtonHideUnderline(
                           child: DropdownButton(
                               value: selectedVariant,
                               onChanged: (value) =>
                                   setVariant(value ?? ButtonVariant.solid),
-                              items: [
+                              items: const [
                                 DropdownMenuItem(
                                     value: ButtonVariant.solid,
-                                    child: MaviTextTheme().body(text: 'Solid')),
+                                    child: MText('Solid')),
                                 DropdownMenuItem(
                                     value: ButtonVariant.soft,
-                                    child: MaviTextTheme().body(text: 'Soft')),
+                                    child: MText('Soft')),
                                 DropdownMenuItem(
                                     value: ButtonVariant.outlined,
-                                    child:
-                                        MaviTextTheme().body(text: 'Outlined')),
+                                    child: MText('Outlined')),
                                 DropdownMenuItem(
                                     value: ButtonVariant.plain,
-                                    child: MaviTextTheme().body(text: 'Plain'))
+                                    child: MText('Plain'))
                               ]),
                         )
                       ],

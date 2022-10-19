@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mavi_design_system/components/elements/contents/text.dart';
 //
 import '../../globals.dart' as globals;
 //
@@ -29,14 +30,13 @@ class ContentColors extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        MaviTextTheme().h2(text: title),
+                        MText(title, style: MaviTextStyles.h2),
                         maviThemeSpacer(),
                         Container(
                             color: colorScheme.primary, height: 2, width: 50),
                         maviThemeSpacer(),
-                        MaviTextTheme().body(
-                            text:
-                                'As a web font you should use Poppins for all headlines and Hind for body text. Every graphic design artwork should be made using these two fonts.'),
+                        const MText(
+                            'As a web font you should use Poppins for all headlines and Hind for body text. Every graphic design artwork should be made using these two fonts.'),
                       ],
                     ),
                   ),
@@ -50,7 +50,7 @@ class ContentColors extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              MaviTheme().textTheme.h4(text: 'Light'),
+                              const MText('Light', style: MaviTextStyles.h4),
                               _ColorThemeGrid(scheme: colorScheme.light),
                             ],
                           ),
@@ -60,7 +60,7 @@ class ContentColors extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              MaviTheme().textTheme.h4(text: 'Dark'),
+                              const MText('Dark', style: MaviTextStyles.h4),
                               _ColorThemeGrid(scheme: colorScheme.dark),
                             ],
                           ),
@@ -86,10 +86,10 @@ class ContentColors extends StatelessWidget {
               child: _ColorSwatchRow(color: MaviTheme().color),
             ),
           ), */
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: margin_lg),
-              child: MaviTheme().textTheme.h4(text: 'Primary (Calculated)'),
+              padding: EdgeInsets.symmetric(horizontal: margin_lg),
+              child: MText('Primary (Calculated)', style: MaviTextStyles.h4),
             ),
           ),
           SliverToBoxAdapter(
@@ -98,10 +98,10 @@ class ContentColors extends StatelessWidget {
               child: _ColorSwatchRow(color: colorScheme.primarySwatch),
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: margin_lg),
-              child: MaviTheme().textTheme.h4(text: 'Secondary'),
+              padding: EdgeInsets.symmetric(horizontal: margin_lg),
+              child: MText('Secondary', style: MaviTextStyles.h4),
             ),
           ),
           SliverToBoxAdapter(
@@ -110,10 +110,10 @@ class ContentColors extends StatelessWidget {
               child: _ColorSwatchRow(color: colorScheme.secondarySwatch),
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: margin_lg),
-              child: MaviTheme().textTheme.h4(text: 'Neutral'),
+              padding: EdgeInsets.symmetric(horizontal: margin_lg),
+              child: MText('Neutral', style: MaviTextStyles.h4),
             ),
           ),
           SliverToBoxAdapter(
@@ -149,14 +149,12 @@ class _ColorThemeGrid extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                MText(
                   name,
-                  style: MaviTheme()
-                      .textTheme
-                      .bodySmallBold()
-                      .apply(newColor: onPrimary)
-                      .getStyle,
-                  overflow: TextOverflow.ellipsis,
+                  style: MaviTextStyles.bodySmall,
+                  fontWeight: FontWeight.bold,
+                  color: onPrimary,
+                  overFlow: TextOverflow.ellipsis,
                 ),
                 Container(
                   height: spacing_sm,
@@ -275,24 +273,20 @@ class _ColorSwatchRow extends StatelessWidget {
               alignment: Alignment.bottomLeft,
               child: Column(
                 children: [
-                  MaviTheme()
-                      .textTheme
-                      .bodyBold(text: '$shade')
-                      .apply(newColor: textColor),
-                  MaviTheme()
-                      .textTheme
-                      .bodySmall(
-                          text: itemColor
-                              .toString()
-                              .replaceAll('Color(0xff', "#")
-                              .replaceAll(")", ""))
-                      .apply(newColor: textColor),
-                  MaviTheme()
-                      .textTheme
-                      .bodySmall(
-                          text:
-                              'h: ${hslColor.hue.toInt()} s: ${hslColor.saturation.toStringAsPrecision(2)}, l: ${itemColor.lightness.toStringAsPrecision(2)}')
-                      .apply(newColor: textColor)
+                  MText('$shade', color: textColor),
+                  MText(
+                    itemColor
+                        .toString()
+                        .replaceAll('Color(0xff', "#")
+                        .replaceAll(")", ""),
+                    color: textColor,
+                    style: MaviTextStyles.bodySmall,
+                  ),
+                  MText(
+                    'h: ${hslColor.hue.toInt()} s: ${hslColor.saturation.toStringAsPrecision(2)}, l: ${itemColor.lightness.toStringAsPrecision(2)}',
+                    color: textColor,
+                    style: MaviTextStyles.bodySmall,
+                  ),
                 ],
               )),
         ),
