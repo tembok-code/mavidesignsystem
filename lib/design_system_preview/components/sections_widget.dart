@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:mavi_design_system/components/elements/contents/text.dart';
 
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -22,11 +23,11 @@ class SectionWidget extends StatelessWidget {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: Container(
-              color: colorScheme.background.withOpacity(0.6),
-              padding: EdgeInsets.all(spacing_sm),
-              child: MaviTextTheme()
-                  .overline(text: title)
-                  .apply(newColor: colorScheme.outline)),
+            color: colorScheme.background.withOpacity(0.6),
+            padding: EdgeInsets.all(spacing_sm),
+            child: MText(title,
+                style: MaviTextStyles.overline, color: colorScheme.outline),
+          ),
         ),
       )),
       SliverToBoxAdapter(child: maviThemeSpacer()),

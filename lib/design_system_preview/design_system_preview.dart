@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mavi_design_system/components/elements/contents/text.dart';
 import 'package:mavi_design_system/design_system_preview/content/components/switch.dart';
+import 'package:mavi_design_system/design_system_preview/content/components/text.dart';
 import 'package:provider/provider.dart';
 
 import '../components/components.dart';
@@ -126,11 +128,9 @@ Widget _ContentButtonWidget(
                     maviThemeVerticalSpacer(size: spacing_sm),
                     Expanded(
                       child: isSelected || isChildSelected
-                          ? MaviTextTheme().bodyBold(text: route.name).apply(
-                                newColor:
-                                    level > 1 && isSelected ? primary : null,
-                              )
-                          : MaviTextTheme().body(text: route.name),
+                          ? MText(route.name,
+                              color: level > 1 && isSelected ? primary : null)
+                          : MText(route.name),
                     ),
                     Container(
                       width: level > 1 ? 1 : 2,
@@ -173,7 +173,7 @@ List<_RouteModel> _routes = [
     _RouteModel(name: "Forms", isSection: true),
     _RouteModel(name: "List", isSection: true),
     _RouteModel(name: "Contents", isSection: true, subRoutes: [
-      _RouteModel(name: "Text"),
+      _RouteModel(name: "Text", content: ContentText()),
       _RouteModel(name: "Frame"),
     ]),
     _RouteModel(name: "Layout", isSection: true),
