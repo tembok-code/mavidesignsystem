@@ -31,13 +31,32 @@ class MaviTheme {
 }
 
 class MaviThemeProvider extends ChangeNotifier {
-  MaviThemeProvider({this.initialMode = ThemeMode.light}) : mode = initialMode;
+  /// Not needed if using MMaterialApp widget
+  /// MMaterialApp values have priority and are set as default over these initial values
+  ///
+  MaviThemeProvider(
+      {this.initialMode = ThemeMode.light,
+      this.initialPalette = MaviPaletteOptions.mavi}) {
+    //*set initial model
+    mode = initialMode;
+    globals.brightness =
+        mode == ThemeMode.light ? Brightness.light : Brightness.dark;
+    //*set initial palette
+    palette = initialPalette;
+    globals.palette = initialPalette;
+  }
   final ThemeMode initialMode;
+  final MaviPaletteOptions initialPalette;
+  //
 
   late ThemeMode mode;
+  late MaviPaletteOptions palette;
 
-  set toggleMode(ThemeMode modeValue) {
-    mode = modeValue;
+  toggleMode({ThemeMode? modeValue}) {
+    mode = modeValue ??
+        (mode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light);
+    globals.brightness =
+        mode == ThemeMode.light ? Brightness.light : Brightness.dark;
     notifyListeners();
   }
 }

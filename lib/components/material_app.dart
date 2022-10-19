@@ -39,16 +39,20 @@ class MMaterialApp extends StatelessWidget {
             ? ThemeMode.light
             : ThemeMode.dark);
 
-    return Provider(
-      create: (context) => MaviThemeProvider(initialMode: _themeMode),
+    return ChangeNotifierProvider(
+      create: (context) => MaviThemeProvider(
+          initialMode: _themeMode, initialPalette: globals.palette),
       builder: (context, child) {
+        //
+        var currentMode = context.watch<MaviThemeProvider>().mode;
+        //
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           scrollBehavior: scrollBehavior,
           //
           theme: MaviTheme().themeData(overrideBrightness: Brightness.light),
           darkTheme: MaviTheme().themeData(overrideBrightness: Brightness.dark),
-          themeMode: _themeMode,
+          themeMode: currentMode,
           //
           title: title,
           home: home,

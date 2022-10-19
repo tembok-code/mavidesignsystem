@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mavi_design_system/design_system_preview/content/components/switch.dart';
+import 'package:provider/provider.dart';
 
 import '../components/components.dart';
 import '../theme/theme.dart';
@@ -29,6 +30,11 @@ class _MaviDesignSystemPreviewState extends State<MaviDesignSystemPreview> {
 
   @override
   Widget build(BuildContext context) {
+    //
+    //
+    var themeProvider = context.read<MaviThemeProvider>();
+    var currentMode = context.watch<MaviThemeProvider>().mode;
+    //
     //
     var colorScheme = Theme.of(context).colorScheme;
     Color primary = colorScheme.primary;
@@ -64,10 +70,10 @@ class _MaviDesignSystemPreviewState extends State<MaviDesignSystemPreview> {
                   ),
                   MSwitch(
                       size: ButtonSize.sm,
-                      onIcon: Icons.nightlight_outlined,
-                      offIcon: Icons.wb_sunny_outlined,
-                      value: false,
-                      onChanged: (value) {}),
+                      onIcon: Icons.dark_mode_outlined,
+                      offIcon: Icons.light_mode_outlined,
+                      value: currentMode == ThemeMode.dark,
+                      onChanged: (value) => themeProvider.toggleMode()),
                   maviThemeSpacer(size: margin_lg)
                 ],
               )),
