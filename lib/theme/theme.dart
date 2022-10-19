@@ -29,3 +29,15 @@ class MaviTheme {
     );
   }
 }
+
+class MaviThemeProvider extends ChangeNotifier {
+  MaviThemeProvider({this.initialMode = ThemeMode.light}) : mode = initialMode;
+  final ThemeMode initialMode;
+
+  late ThemeMode mode;
+
+  set toggleMode(ThemeMode modeValue) {
+    mode = modeValue;
+    notifyListeners();
+  }
+}
