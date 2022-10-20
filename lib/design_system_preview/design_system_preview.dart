@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mavi_design_system/components/elements/contents/text.dart';
 import 'package:mavi_design_system/design_system_preview/content/components/switch.dart';
 import 'package:mavi_design_system/design_system_preview/content/components/text.dart';
+import 'package:mavi_design_system/design_system_preview/content/helpers/palette_overlay.dart';
 import 'package:provider/provider.dart';
 
 import '../components/components.dart';
@@ -165,6 +166,9 @@ List<_RouteModel> _routes = [
   _RouteModel(name: "Colors", content: ContentColors()),
   _RouteModel(name: "Typography", content: ContentTypography()),
   _RouteModel(name: "Icons"),
+  _RouteModel(name: "Helpers", subRoutes: [
+    _RouteModel(name: 'Palette Overlay', content: ContentPaletteOverlay())
+  ]),
   _RouteModel(name: "Components", subRoutes: [
     _RouteModel(name: 'Inputs', isSection: true, subRoutes: [
       _RouteModel(name: "Button", content: ContentButton()),
